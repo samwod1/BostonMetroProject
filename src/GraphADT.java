@@ -1,14 +1,21 @@
+package src;
+import java.util.*;
+
 public class GraphADT {
 
-    int numVertices;
+    ArrayList vertices = new ArrayList();
+    ArrayList<ArrayList> edges = new ArrayList();
 
-    public GraphADT(int v) {
-        this.numVertices = v;
+    public GraphADT(ArrayList vertices, ArrayList<ArrayList> edges){
+        this.vertices = vertices;
+        this.edges = edges;
     }
 
-    public void makeGraph(collection adjacencys) {
+    //create construct graph method which takes in input and crates adjacency list.
+    //create other methods which add other functionality
+
+    public void constructGraph(){
 
     }
-
 
 }
