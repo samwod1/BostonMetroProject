@@ -93,6 +93,46 @@ public class GraphADT {
     {
         return successors(node).size();
     }
+
+    public int getNumNodes(){
+        return 1;
+    }
+
+    //takes root node and target node and stops when target node is found
+    //and returns path
+    public HashMap BFS(int root, int target)
+    {
+        boolean visited[] = new boolean[getNumNodes()];
+        LinkedList<Integer> queue = new LinkedList<Integer>();
+        HashMap<Integer, Integer> path = new HashMap<Integer, Integer>();
+
+        visited[root] = true;
+        queue.add(root);
+        path.put(root, null);
+
+        while(queue.size() != 0){
+            //pool is like pop but doesn't throw error when empty, just returns null
+            int parent = root;
+            root = queue.poll();
+            path.put(root,parent);
+
+            if(root == target)
+                return path;
+
+            System.out.print(root+" ");
+
+            Iterator<Integer> iterator = adjList.get(root).listIterator();
+            while (iterator.hasNext()){
+                int num = iterator.next();
+                if(visited[num] == false){
+                    visited[num] = true;
+                    queue.add(num);
+                }
+            }
+        }
+
+        return path;
+    }
     
     //create construct graph method which takes in input and crates adjacency list.
     //create other methods which add other functionality
