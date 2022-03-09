@@ -3,18 +3,28 @@ import java.util.*;
 
 public class GraphADT {
 
-    List<List<Integer>>adjList;
+    List<List<Integer>> adjList = new ArrayList<>();
     private int numNodes;
 
     ArrayList vertices = new ArrayList();
-    ArrayList<ArrayList> edges = new ArrayList();
+    //changed edges inner arraylist to be of type Integer
+    ArrayList<ArrayList<Integer>> edges = new ArrayList();
+    // temp removing vertices
 
-    public GraphADT(ArrayList vertices, ArrayList<ArrayList> edges){
-        this.vertices = vertices;
+    public GraphADT(/*ArrayList vertices,*/ ArrayList<ArrayList<Integer>> edges){
         this.edges = edges;
+        numNodes = edges.size();
+
+        for (int i = 0; i < numNodes; i++)
+            adjList.add(i, new ArrayList<>());
+
+        for(ArrayList<Integer> e : edges){
+            //gets source and adds new adjancent node
+            adjList.get(e.get(0)).add(e.get(1));
+        }
     }
     //keeping these constructors seperate for the time being but we might merge them
-
+    /*
     public GraphADT(int n) {
         this.numNodes = n;
         adjList = new ArrayList<>(numNodes);
@@ -22,6 +32,7 @@ public class GraphADT {
             adjList.add(new ArrayList<>());
         }
     }
+     */
 
     public int nNodes()
     {
