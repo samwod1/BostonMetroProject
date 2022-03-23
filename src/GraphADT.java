@@ -1,4 +1,6 @@
 package src;
+//import com.sun.tools.jdeps.Graph;
+
 import java.util.*;
 
 public class GraphADT {
@@ -7,11 +9,12 @@ public class GraphADT {
     private int numNodes;
 
     ArrayList vertices = new ArrayList();
-    //changed edges inner arraylist to be of type Integer
+    // changed edges inner arraylist to be of type Integer
     ArrayList<ArrayList<Integer>> edges = new ArrayList();
     // temp removing vertices
 
     public GraphADT(/*ArrayList vertices,*/ ArrayList<ArrayList<Integer>> edges){
+
         this.edges = edges;
         numNodes = edges.size();
 
@@ -22,6 +25,7 @@ public class GraphADT {
             //gets source and adds new adjancent node
             adjList.get(e.get(0)).add(e.get(1));
         }
+
     }
     //keeping these constructors seperate for the time being but we might merge them
     /*
@@ -105,6 +109,7 @@ public class GraphADT {
         boolean visited[] = new boolean[getNumNodes()];
         LinkedList<Integer> queue = new LinkedList<Integer>();
         HashMap<Integer, Integer> path = new HashMap<Integer, Integer>();
+        System.out.println(getNumNodes());
 
         visited[root] = true;
         queue.add(root);
@@ -133,6 +138,15 @@ public class GraphADT {
 
         return path;
     }
+
+    public void printGraph(){
+        int src_vertex = 0;
+        int list_size = adjList.size();
+
+        while(src_vertex < list_size){
+            
+        }
+    }
     
     //create construct graph method which takes in input and crates adjacency list.
     //create other methods which add other functionality
@@ -143,4 +157,32 @@ public class GraphADT {
 
     }
 
+    public static void main(String[] args) {
+
+        ArrayList<ArrayList<Integer>> aList = new ArrayList<ArrayList<Integer>>();
+
+        ArrayList<Integer> a1 = new ArrayList<Integer>();
+        a1.add(1);
+        a1.add(2);
+        aList.add(a1);
+
+        ArrayList<Integer> a2 = new ArrayList<Integer>();
+        a2.add(2);
+        a2.add(3);
+        aList.add(a2);
+
+        ArrayList<Integer> a3 = new ArrayList<Integer>();
+        a3.add(1);
+        a3.add(4);
+        aList.add(a3);
+
+        ArrayList<Integer> a4 = new ArrayList<Integer>();
+        a4.add(2);
+        a4.add(5);
+        aList.add(a4);
+
+        GraphADT graph = new GraphADT(aList);
+        System.out.print(graph);
+        //graph.BFS(1,5);
+    }
 }
