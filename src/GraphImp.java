@@ -6,6 +6,10 @@ import java.util.LinkedList;
 
 public class GraphImp extends GraphADT {
 
+    public GraphImp(ArrayList<ArrayList<Integer>> edges) {
+        super(edges);
+    }
+
     public int nNodes()
     {
         return numNodes;
@@ -149,7 +153,7 @@ public class GraphImp extends GraphADT {
         a4.add(5);
         aList.add(a4);
 
-        src.GraphADT graph = new src.GraphADT(aList);
+        GraphImp graph = new GraphImp(aList);
         System.out.print(graph);
         //graph.BFS(1,5);
     }

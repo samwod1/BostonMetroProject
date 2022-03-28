@@ -5,7 +5,7 @@ import java.util.*;
 public abstract class GraphADT {
 
     List<List<Integer>> adjList = new ArrayList<>();
-    private int numNodes;
+    public int numNodes;
 
     ArrayList vertices = new ArrayList();
     // changed edges inner arraylist to be of type Integer
