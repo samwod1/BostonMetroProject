@@ -12,7 +12,7 @@ public class InputReader {
 
     public static final String divider = "";
 
-    public static void readFile(String file) {
+    public static ArrayList readFile(String file) {
         ArrayList textLines = new ArrayList();
         try {
             File inputFile = new File(file);
@@ -28,8 +28,9 @@ public class InputReader {
         } catch(IOException ioe) {
             ioe.printStackTrace();
         }
+        return textLines;
         //need to put this in network constructor
-        createStationsLines(textLines);
+//        createStationsLines(textLines);
     }
 
 

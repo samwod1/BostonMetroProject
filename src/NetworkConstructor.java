@@ -4,7 +4,8 @@ import java.util.Set;
 
 public class NetworkConstructor {
 
-    public static void createStationsLines(ArrayList textLines){
+    public static void createStationsLines(String file){
+        ArrayList textLines = InputReader.readFile(file);
         Set<String> lineNames = new HashSet<String>();
         ArrayList<Station> stations = new ArrayList<>();
         ArrayList<Line> lines = new ArrayList<>();
