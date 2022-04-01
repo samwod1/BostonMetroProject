@@ -1,14 +1,32 @@
 
-public class Line {
+import java.util.ArrayList;
 
-    public static void main(String[] args) {
-        String line = "line1";
-        Station station1 = new Station("one", line);
-        Station station2 = new Station("two", line);
-        Station station3 = new Station("three", line);
-        station1.setNext(station2);
-        station2.setPreviousNext(station1, station3);
-        station3.setPrevious(station2);
+public class Line {
+    String name;
+    ArrayList stations;
+
+    public Line(String name, ArrayList stations) {
+        this.name = name;
+        this.stations = stations;
     }
 
+    public void addStation(Station station){
+        this.stations.add(station);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ArrayList getStations() {
+        return stations;
+    }
+
+    public void setStations(ArrayList stations) {
+        this.stations = stations;
+    }
 }
