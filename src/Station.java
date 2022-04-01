@@ -1,38 +1,42 @@
 package src;
 
+import java.util.ArrayList;
+
 public class Station {
 
-    Station previous;
-    Station next;
+    String number;
     String name;
-    String line;
+    ArrayList<String> lines;
+    ArrayList<Station> connections;
 
-    public Station(String name, String line) {
+    public Station(String number, String name, ArrayList lines, ArrayList connections) {
+        this.number = number;
         this.name = name;
-        this.line = line;
+        this.lines = lines;
+        this.connections = connections;
     }
 
-    public void Station(Station previous, Station next, String name, String line) {
-        this.previous = previous;
-        this.next = next;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
-        this.line = line;
     }
 
-    public void setPreviousNext(Station previous, Station next){
-        this.previous = previous;
-        this.next = next;
+    public ArrayList getLines() {
+        return lines;
     }
 
-    public Station getPrevious() { return previous; }
+    public void setLines(ArrayList lines) {
+        this.lines = lines;
+    }
 
-    public void setPrevious(Station previous) { this.previous = previous; }
+    public ArrayList getConnections() {
+        return connections;
+    }
 
-    public Station getNext() { return next; }
-
-    public void setNext(Station next) { this.next = next; }
-
-    public String getName() { return name; }
-
-    public void setName(String name) { this.name = name; }
+    public void setConnections(ArrayList connections) {
+        this.connections = connections;
+    }
 }
