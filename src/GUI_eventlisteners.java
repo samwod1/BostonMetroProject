@@ -1,10 +1,14 @@
+/**
+package src;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -17,9 +21,11 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
-public class GUI_eventlisteners {
+public class GUI_eventlisteners implements Initializable {
 
     private Stage stage;
     private Scene scene;
@@ -29,8 +35,21 @@ public class GUI_eventlisteners {
 
 
     /**
+     * Set Up Listviews and Choice boxes
+
+    @FXML
+    private ListView<String> fromListView;
+    @FXML
+    private ListView<String> toListView;
+    @FXML
+    private ListView<String> resultingPath;
+    @FXML
+    private ChoiceBox<String> fromLineDropDown;
+    @FXML
+    private ChoiceBox<String> toLineDropdown;
+    /**
      * To setup buttons and text field
-     */
+
     @FXML
     private TextField fromtxt;
     @FXML
@@ -41,7 +60,7 @@ public class GUI_eventlisteners {
     private Pane one_change;
     /**
      * Next few is for no changes labels and lines. nc = no changes
-     */
+
     @FXML
     private Pane no_change;
     @FXML
@@ -56,7 +75,7 @@ public class GUI_eventlisteners {
     private Line ncline;
     /**
      * Next few is for one change labels and lines. oc = one change
-     */
+
     @FXML
     private Label oclinename1;
     @FXML
@@ -79,7 +98,7 @@ public class GUI_eventlisteners {
     private Line ocline2;
     /**
      * Next few is for two changes labels and lines. tc = two changes
-     */
+
     @FXML
     private Label tclinename1;
     @FXML
@@ -117,6 +136,15 @@ public class GUI_eventlisteners {
         }
     }
 
+    String[] letters = {"e","b","r"};
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1){
+        fromListView.getItems().addAll(letters);
+        toListView.getItems().addAll(letters);
+        resultingPath.getItems().addAll(letters);
+    }
+
     public void switchToMap(ActionEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("map.fxml"));
         Parent root = loader.load();
@@ -142,8 +170,7 @@ public class GUI_eventlisteners {
      * @param start
      * @param end
      * @param line
-     * @param stops
-     */
+
     public void setNo_change(String start, String end, Array line, int stops){
         (no_change).setVisible(true);
         (one_change).setVisible(false);
@@ -166,7 +193,7 @@ public class GUI_eventlisteners {
      * @param line2
      * @param stops
      * @param stops2
-     */
+
     public void setOne_change(String start, String middle, String end, String line, String line2, int stops, int stops2){
         (no_change).setVisible(false);
         (one_change).setVisible(true);
@@ -196,7 +223,7 @@ public class GUI_eventlisteners {
      * @param line3
      * @param stops
      * @param stops2
-     */
+
     public void setTwo_change(String start, String middle, String middle2, String end, String line, String line2, String line3, int stops, int stops2){
         (no_change).setVisible(false);
         (one_change).setVisible(false);
@@ -219,4 +246,6 @@ public class GUI_eventlisteners {
     public String getStart(){ return Start; }
 
     public String getEnd(){ return End; }
+
 }
+*/

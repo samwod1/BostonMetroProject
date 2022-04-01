@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.QuadCurve?>
 
-<AnchorPane fx:id="MainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="914.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.GUI_eventlisteners">
+<AnchorPane fx:id="MainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="914.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.GUI_create">
    <children>
       <Separator layoutX="312.0" layoutY="-8.0" orientation="VERTICAL" prefHeight="961.0" prefWidth="14.0" />
       <TextField fx:id="fromtxt" layoutX="29.0" layoutY="128.0" prefHeight="25.0" prefWidth="250.0" />
@@ -60,13 +60,14 @@
             <Label fx:id="oclinename2" contentDisplay="CENTER" layoutX="202.0" layoutY="39.0" text="y Line" />
          </children>
       </Pane>
-      <ListView fx:id="fromListView" layoutX="398.0" layoutY="96.0" prefHeight="782.0" prefWidth="200.0" />
+      <ListView fx:id="fromListView" editable="true" layoutX="398.0" layoutY="96.0" prefHeight="782.0" prefWidth="200.0" />
       <Button layoutX="117.0" layoutY="40.0" mnemonicParsing="false" onAction="#switchToMap" text="Show Map" />
-      <ListView fx:id="toListView" layoutX="678.0" layoutY="96.0" prefHeight="782.0" prefWidth="200.0" />
+      <ListView fx:id="toListView" editable="true" layoutX="678.0" layoutY="96.0" prefHeight="782.0" prefWidth="200.0" />
       <ChoiceBox fx:id="fromLineDropDown" layoutX="423.0" layoutY="51.0" prefWidth="150.0" />
       <ChoiceBox fx:id="toLineDropdown" layoutX="703.0" layoutY="51.0" prefWidth="150.0" />
       <Label layoutX="631.0" layoutY="464.0" text="To" />
-      <ListView fx:id="resultingPath" layoutX="1013.0" layoutY="51.0" prefHeight="842.0" prefWidth="200.0" />
+      <ListView fx:id="resultingPath" editable="true" layoutX="1013.0" layoutY="96.0" prefHeight="782.0" prefWidth="200.0" />
       <Label layoutX="939.0" layoutY="464.0" text="=" />
+      <Label layoutX="1072.0" layoutY="61.0" text="Route to Take" />
    </children>
 </AnchorPane>
