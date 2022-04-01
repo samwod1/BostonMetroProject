@@ -2,6 +2,10 @@ package src;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -9,16 +13,24 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.QuadCurve;
+import javafx.stage.Stage;
 
 import java.awt.*;
+import java.io.IOException;
 import java.lang.reflect.Array;
 
 
 public class GUI_eventlisteners {
 
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+    String Start;
+    String End;
+
 
     /**
-     * Constructors to connect with scenebuilder.
+     * To setup buttons and text field
      */
     @FXML
     private TextField fromtxt;
@@ -94,8 +106,6 @@ public class GUI_eventlisteners {
     @FXML
     private QuadCurve tcline3;
 
-    String Start;
-    String End;
 
     public void submitbtn(ActionEvent event){
         try{
@@ -106,6 +116,24 @@ public class GUI_eventlisteners {
         catch (Exception e){
             System.out.println(e);
         }
+    }
+
+    public void switchToMap(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("map.fxml"));
+        Parent root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene mapScene = new Scene(root);
+        stage.setScene(mapScene);
+        stage.show();
+    }
+
+    public void switchToMain(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("GUI_Main.fxml"));
+        Parent root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene mapScene = new Scene(root);
+        stage.setScene(mapScene);
+        stage.show();
     }
 
 

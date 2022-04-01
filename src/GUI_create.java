@@ -19,7 +19,7 @@ public class GUI_create extends Application {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("GUI_Main.fxml"));
             Parent root = loader.load();
-            GUI_eventlisteners startEvents = loader.getController();
+            // GUI_eventlisteners startEvents = loader.getController();
             primaryStage.setTitle("Boston Subway");
             Scene scene = new Scene(root);
             String css = this.getClass().getResource("bstnsoobway.css").toExternalForm();
