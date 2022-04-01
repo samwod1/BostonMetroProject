@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.QuadCurve?>
+
+<AnchorPane fx:id="MainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="914.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.GUI_eventlisteners">
+   <children>
+      <Separator layoutX="312.0" layoutY="-8.0" orientation="VERTICAL" prefHeight="961.0" prefWidth="14.0" />
+      <TextField fx:id="fromtxt" layoutX="29.0" layoutY="128.0" prefHeight="25.0" prefWidth="250.0" />
+      <TextField fx:id="totxt" layoutX="29.0" layoutY="203.0" prefHeight="25.0" prefWidth="250.0" />
+      <Button fx:id="submitbtn" layoutX="127.0" layoutY="243.0" mnemonicParsing="false" onAction="#submitbtn" text="Submit" />
+      <Label layoutX="140.0" layoutY="96.0" text="From" />
+      <Label layoutX="147.0" layoutY="175.0" text="To" />
+      <Separator layoutX="-8.0" layoutY="309.0" prefHeight="11.0" prefWidth="326.0" />
+      <Label fx:id="Warning" layoutX="67.0" layoutY="55.0" prefHeight="17.0" prefWidth="163.0" />
+      <Pane fx:id="two_change" layoutX="31.0" layoutY="318.0" prefHeight="581.0" prefWidth="274.0" visible="false">
+         <children>
+            <Label fx:id="tcstart" contentDisplay="CENTER" layoutX="17.0" layoutY="75.0" text="Start" />
+            <Label fx:id="tcmiddlestn1" contentDisplay="CENTER" layoutX="11.0" layoutY="455.0" text="Middle 1" />
+            <Line fx:id="tcline1" endY="-38.0" layoutX="17.0" layoutY="144.0" startY="294.0" />
+            <Label fx:id="tcstop1" contentDisplay="CENTER" layoutX="29.0" layoutY="272.0" text="x Stops" />
+            <Label fx:id="tcend" contentDisplay="CENTER" layoutX="188.0" layoutY="75.0" text="End" />
+            <Label fx:id="tcmiddlestn2" contentDisplay="CENTER" layoutX="187.0" layoutY="455.0" text="Middle 2" />
+            <Line fx:id="tcline2" endY="-38.0" layoutX="187.0" layoutY="144.0" startY="294.0" />
+            <Label fx:id="tcstop2" contentDisplay="CENTER" layoutX="197.0" layoutY="272.0" text="x Stops" />
+            <Label fx:id="tclinename1" contentDisplay="CENTER" layoutX="33.0" layoutY="39.0" text="x Line" />
+            <Label fx:id="twoclinename2" contentDisplay="CENTER" layoutX="202.0" layoutY="39.0" text="y Line" />
+            <QuadCurve fx:id="tcline3" controlX="31.0" controlY="64.0" endX="97.0" fill="#1f93ff00" layoutX="79.0" layoutY="488.0" startX="-34.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label fx:id="tclinename3" contentDisplay="CENTER" layoutX="97.0" layoutY="530.0" text="z line" />
+         </children>
+      </Pane>
+      <Pane fx:id="no_change" layoutX="-26.0" prefHeight="494.0" prefWidth="274.0" visible="false">
+         <children>
+            <Label fx:id="ncstartstn" contentDisplay="CENTER" layoutX="116.0" layoutY="83.0" text="Start" />
+            <Label fx:id="ncendstn" contentDisplay="CENTER" layoutX="118.0" layoutY="456.0" text="End" />
+            <Line fx:id="ncline" endY="-38.0" layoutX="128.0" layoutY="152.0" startY="294.0" />
+            <Label fx:id="ncstops" contentDisplay="CENTER" layoutX="143.0" layoutY="272.0" text="x Stops" />
+            <Label fx:id="nclinename" contentDisplay="CENTER" layoutX="113.0" layoutY="42.0" text="x Line" />
+         </children>
+      </Pane>
+      <Pane fx:id="one_change" layoutX="25.0" prefHeight="494.0" prefWidth="274.0" visible="false">
+         <children>
+            <Label fx:id="ocstartstn" contentDisplay="CENTER" layoutX="17.0" layoutY="83.0" text="Start" />
+            <Label fx:id="ocmiddlestn" contentDisplay="CENTER" layoutX="11.0" layoutY="463.0" text="Middle" />
+            <Line fx:id="ocline1" endY="-38.0" layoutX="17.0" layoutY="152.0" startY="294.0" />
+            <Label fx:id="ocstops" contentDisplay="CENTER" layoutX="29.0" layoutY="272.0" text="x Stops" />
+            <Label fx:id="ocmiddlestn2" contentDisplay="CENTER" layoutX="188.0" layoutY="83.0" text="Middle" />
+            <Label fx:id="ocendstn" contentDisplay="CENTER" layoutX="187.0" layoutY="463.0" text="End" />
+            <Line fx:id="ocline2" endY="-38.0" layoutX="187.0" layoutY="152.0" startY="294.0" />
+            <Label fx:id="ocstops2" contentDisplay="CENTER" layoutX="197.0" layoutY="272.0" text="x Stops" />
+            <Label fx:id="oclinename1" contentDisplay="CENTER" layoutX="53.0" layoutY="39.0" text="x Line" />
+            <Label fx:id="oclinename2" contentDisplay="CENTER" layoutX="202.0" layoutY="39.0" text="y Line" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
