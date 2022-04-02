@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import static java.lang.Integer.parseInt;
+
 public class NetworkConstructor {
 
     public static ArrayList<Station> createStations(){
@@ -19,7 +21,10 @@ public class NetworkConstructor {
                 }
                 for (int k = 1; k <= 2; k++) {
                     if (connections.contains(temp.get(j+k)) == false){
-                        connections.add(temp.get(j+k));
+                        Integer toAdd = parseInt(temp.get(j+k));
+                        if (toAdd>0) {
+                            connections.add(toAdd);
+                        }
                     }
                 }
             }
@@ -46,6 +51,25 @@ public class NetworkConstructor {
         }
         //printStations(stations);
         return stations;
+    }
+
+    public static ArrayList<ArrayList<Station>> connections(){
+        ArrayList<Station> stations = createStations();
+        ArrayList<ArrayList<Station>> connections = new ArrayList<>();
+        //Very dirty contains duplicates i.e. [a,b] and [b,a]
+        for (int i = 0; i < stations.size(); i++) {
+            Station first = stations.get(i);
+            ArrayList<Integer> firstConnections = first.getConnections();
+            for (int j = 0; j < firstConnections.size(); j++) {
+                ArrayList<Station> conn = new ArrayList<>();
+                Station second = stations.get(firstConnections.get(j)-1);
+                conn.add(first);
+                conn.add(second);
+                connections.add(conn);
+            }
+        }
+        System.out.println(connections);
+        return connections;
     }
 
     public static void printStations(ArrayList stations){

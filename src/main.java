@@ -6,7 +6,8 @@ public class main {
         //InputReader inputReader = new InputReader();
         //inputReader.readFile();
         NetworkConstructor networkConstructor = new NetworkConstructor();
-        networkConstructor.createStations();
+        //networkConstructor.createStations();
+        networkConstructor.connections();
     }
 
 }

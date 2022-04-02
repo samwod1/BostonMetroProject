@@ -6,7 +6,7 @@ public class Station {
     String number;
     String name;
     ArrayList<String> lines;
-    ArrayList<Station> connections;
+    ArrayList<Integer> connections;
 
     public Station(String number, String name, ArrayList lines, ArrayList connections) {
         this.number = number;
@@ -33,7 +33,7 @@ public class Station {
         this.name = name;
     }
 
-    public ArrayList getLines() {
+    public ArrayList<String> getLines() {
         return lines;
     }
 
@@ -41,7 +41,7 @@ public class Station {
         this.lines = lines;
     }
 
-    public ArrayList getConnections() {
+    public ArrayList<Integer> getConnections() {
         return connections;
     }
 
