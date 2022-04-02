@@ -1,32 +1,35 @@
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 public class NetworkConstructor {
 
-    public static void createStationsLines(String file){
-        ArrayList textLines = InputReader.readFile(file);
-        Set<String> lineNames = new HashSet<String>();
+    public static ArrayList<Station> createStations(){
+        ArrayList<ArrayList<String>> textLines = InputReader.readFile();
+        ArrayList<String> lineNames = new ArrayList<>();
         ArrayList<Station> stations = new ArrayList<>();
         ArrayList<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < textLines.size(); i++) {
-            String [] temp = (String[]) textLines.get(i);
+            ArrayList<String> temp = textLines.get(i);
             ArrayList l = new ArrayList();
             ArrayList connections = new ArrayList();
-            for (int j = 2; j < temp.length; j+=3) {
-                l.add(temp[j]);
-                lineNames.add(temp[j]);
-                connections.add(temp[j+1]);
-                connections.add(temp[j+2]);
+            for (int j = 2; j < temp.size(); j+=3) {
+                l.add(temp.get(j));
+                if (lineNames.contains(temp.get(j)) == false) {
+                    lineNames.add(temp.get(j));
+                }
+                for (int k = 1; k <= 2; k++) {
+                    if (connections.contains(temp.get(j+k)) == false){
+                        connections.add(temp.get(j+k));
+                    }
+                }
             }
-            Station s = new Station(temp[0],temp[1], l, connections);
+            Station s = new Station(temp.get(0),temp.get(1), l, connections);
             stations.add(s);
         }
-        String [] lineNamesArray = (String[]) lineNames.toArray();
+
         for (int i = 0; i < lineNames.size(); i++) {
             ArrayList s = new ArrayList();
-            Line line = new Line(lineNamesArray[i], s);
+            Line line = new Line(lineNames.get(i), s);
             lines.add(line);
         }
 
@@ -40,6 +43,14 @@ public class NetworkConstructor {
                     }
                 }
             }
+        }
+        //printStations(stations);
+        return stations;
+    }
+
+    public static void printStations(ArrayList stations){
+        for (int i = 0; i < stations.size(); i++) {
+            System.out.println(stations.get(i).toString());
         }
     }
 }
