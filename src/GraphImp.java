@@ -83,6 +83,23 @@ public class GraphImp extends GraphADT {
         HashMap<Integer, Integer> path = new HashMap<Integer, Integer>();
         System.out.println(getNumNodes());
 
+        System.out.println(nNodes());
+        boolean containsRoot = false;
+        boolean containsTarget = false;
+        for(int i=0; i < adjList.size(); i++){
+            if(adjList.get(i).contains(root)){
+                containsRoot = true;
+            }
+            if(adjList.get(i).contains(target)){
+                containsTarget = true;
+            }
+        }
+
+        if(!containsRoot || !containsTarget){
+            System.out.println("Please enter a valid target");
+            return path;
+        }
+
         visited[root] = true;
         queue.add(root);
         path.put(root, null);
