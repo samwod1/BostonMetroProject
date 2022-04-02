@@ -15,6 +15,16 @@ public class Station {
         this.connections = connections;
     }
 
+    @Override
+    public String toString() {
+        return "Station{" +
+                "number='" + number + '\'' +
+                ", name='" + name + '\'' +
+                ", lines=" + lines +
+                ", connections=" + connections +
+                '}';
+    }
+
     public String getName() {
         return name;
     }
