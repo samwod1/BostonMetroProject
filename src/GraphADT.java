@@ -12,7 +12,8 @@ public abstract class GraphADT {
     ArrayList<ArrayList<Integer>> edges = new ArrayList();
     // temp removing vertices
 
-    public GraphADT(/*ArrayList vertices,*/ ArrayList<ArrayList<Integer>> edges){
+    /*
+    public GraphADT( ArrayList<ArrayList<Integer>> edges){
 
         this.edges = edges;
         numNodes = edges.size();
@@ -26,6 +27,42 @@ public abstract class GraphADT {
         }
 
     }
+    */
+    public GraphADT(/*ArrayList vertices,*/ ArrayList<ArrayList<Integer>> edges){
+
+        this.edges = edges;
+        //find max position to intiliase arrayList the adjList
+        int maxNodes = 0;
+
+        for(int i = 0; i < edges.size(); i++){
+            if(edges.get(i).get(0) > maxNodes)
+                maxNodes = edges.get(i).get(0); //assigns root node of edge to max
+            if(edges.get(i).get(1) > maxNodes)
+                maxNodes = edges.get(i).get(1);
+        }
+
+        maxNodes = maxNodes + 1;
+        this.numNodes = maxNodes;
+        System.out.println("maxNodes: " + maxNodes);
+        //intiliases adjList
+        for(int i = 0; i < maxNodes; i++){
+            ArrayList<Integer> temp = new ArrayList<Integer>();
+            adjList.add(temp);
+        }
+
+        System.out.println("adjList size: " + adjList.size());
+
+        for(int i = 0; i < edges.size(); i++){
+            adjList.get(edges.get(i).get(1)).add(edges.get(i).get(0));
+            adjList.get(edges.get(i).get(0)).add(edges.get(i).get(1));
+        }
+
+        for(int i = 0; i < adjList.size(); i++){
+            System.out.println(adjList.get(i));
+        }
+
+    }
+
 
     public abstract int nNodes();
 
