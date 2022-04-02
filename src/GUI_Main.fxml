@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.QuadCurve?>
 
-<AnchorPane fx:id="MainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="914.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.GUI_create">
+<AnchorPane fx:id="MainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="914.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.GUI_eventlisteners">
    <children>
       <Separator layoutX="312.0" layoutY="-8.0" orientation="VERTICAL" prefHeight="961.0" prefWidth="14.0" />
       <TextField fx:id="fromtxt" layoutX="29.0" layoutY="128.0" prefHeight="25.0" prefWidth="250.0" />
@@ -61,7 +61,7 @@
          </children>
       </Pane>
       <ListView fx:id="fromListView" editable="true" layoutX="398.0" layoutY="96.0" prefHeight="782.0" prefWidth="200.0" />
-      <Button layoutX="117.0" layoutY="40.0" mnemonicParsing="false" onAction="#switchToMap" text="Show Map" />
+      <Button fx:id="switchToMapBtn" layoutX="117.0" layoutY="40.0" mnemonicParsing="false" onAction="#switchToMapBtn" text="Show Map" />
       <ListView fx:id="toListView" editable="true" layoutX="678.0" layoutY="96.0" prefHeight="782.0" prefWidth="200.0" />
       <ChoiceBox fx:id="fromLineDropDown" layoutX="423.0" layoutY="51.0" prefWidth="150.0" />
       <ChoiceBox fx:id="toLineDropdown" layoutX="703.0" layoutY="51.0" prefWidth="150.0" />
