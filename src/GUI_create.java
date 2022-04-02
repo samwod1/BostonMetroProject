@@ -1,4 +1,4 @@
-package src;
+
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -50,6 +50,14 @@ public class GUI_create extends Application {
         setRunGUI(this);
     }
 
+    /**
+     *
+     * Loads and sets up the frame and GUI. Just the driver for everything GUI. Can be linked to another
+     * driver in a special way like in the dirver class. needs to be on own. no eventlisteners in here.
+     *
+     * @param primaryStage
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -57,7 +65,7 @@ public class GUI_create extends Application {
             this.stage = primaryStage;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("GUI_Main.fxml"));
             Parent root = loader.load();
-            // GUI_eventlisteners startEvents = loader.getController();
+            GUI_eventlisteners startEvents = loader.getController();
             primaryStage.setTitle("Boston Subway");
             Scene scene = new Scene(root);
             String css = this.getClass().getResource("bstnsoobway.css").toExternalForm();

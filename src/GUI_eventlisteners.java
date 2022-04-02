@@ -1,9 +1,13 @@
-package src;
 
 
 
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import javafx.collections.SetChangeListener;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,7 +28,8 @@ import java.awt.*;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.List;
 
 
 public class GUI_eventlisteners implements Initializable {
@@ -37,11 +42,8 @@ public class GUI_eventlisteners implements Initializable {
 
 
          /**
-         * Set Up Listviews and Choice boxes
+         * Set Up Listviews and Combo boxes
          */
-
-
-
         @FXML
         private ListView<String> fromListView;
         @FXML
@@ -49,9 +51,9 @@ public class GUI_eventlisteners implements Initializable {
         @FXML
         private ListView<String> resultingPath;
         @FXML
-        private ChoiceBox<String> fromLineDropDown;
+        private ComboBox<String> fromLineDropDown;
         @FXML
-        private ChoiceBox<String> toLineDropdown;
+        private ComboBox<String> toLineDropdown;
         /**
          * To setup buttons and text field
          */
@@ -129,31 +131,35 @@ public class GUI_eventlisteners implements Initializable {
         @FXML
         private QuadCurve tcline3;
 
-        @FXML
-        private Button switchToMapBtn;
-        @FXML
-        private Button submitbtn;
 
-        private Line line = new Line;
+        String[] lines = {"Red", "RedA", "RedB", "Blue", "Orange", "Mattapan",
+                "Green", "GreenA", "GreenB", "GreenC", "GreenD", "GreenE"};
 
+
+        /**
+         *
+         * Populates the combo boxes
+         *
+         * @param url
+         * @param resourceBundle
+         */
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
-                String[] chosenLine;
 
-
+                fromLineDropDown.setPromptText("Choose Line");
                 fromLineDropDown.getItems().addAll(lines);
-                fromLineDropDown.setOnAction(this::getLine);
-
-                //chosenLine = toLineDropdown.getItems().addAll(lines);
-
-
-                //  fromListView.getItems().addAll(chosenLine);
-                //toListView.getItems().addAll(letters);
-                //resultingPath.getItems().addAll(letters);
+                fromLineDropDown.setOnAction(this::getFromLine);
+                toLineDropdown.setPromptText("Choose Line");
+                toLineDropdown.getItems().addAll(lines);
+                toLineDropdown.setOnAction(this::getToLine);
 
                 }
 
-
+        /**
+         * Submit button for the text Fields not linked with Listview yet. Need away for error checking
+         *
+         * @param event
+         */
         public void submitbtn(ActionEvent event) {
                 try {
                 Start = fromtxt.getText();
@@ -164,15 +170,49 @@ public class GUI_eventlisteners implements Initializable {
                 } catch (Exception e) {
                 System.out.println(e);
                 }
+        }
+
+        /**
+         * Submits when first 2 list views are chosen
+         * @param event
+         */
+        public void submitbtn2(ActionEvent event) {
+                try {
+                        ObservableList<String> fromObs;
+                        ObservableList<String> toObs;
+
+                        fromObs = fromListView.getSelectionModel().getSelectedItems();
+                        toObs = toListView.getSelectionModel().getSelectedItems();
+
+                        if (!fromObs.isEmpty() && !toObs.isEmpty()) {
+
+                                String from = "";
+                                String to = "";
+
+                                from += fromObs.toString().substring(1, 3 * fromObs.size() - 1).replaceAll(", ", "");
+                                to += toObs.toString().substring(1, 3 * toObs.size() - 1).replaceAll(", ", "");
+
+                                Start = from;
+                                End = to;
+
+                                fromtxt.clear();
+                                totxt.clear();
+
+                                finalRoute(from, to);
+                        }
+
+
+                } catch (Exception e) {
+                        System.out.println(e);
                 }
+        }
 
-
-                String[] GreenA = {"e", "b", "r"};
-                String[] Red = {"a", "v", "e"};
-                String[] lines = {"Red", "RedA", "RedB", "Blue", "Orange", "Mattapan",
-                "Green", "GreenA", "GreenB", "GreenC", "GreenD", "GreenE"};
-
-
+        /**
+         * Switches scene to the map
+         *
+         * @param event
+         * @throws IOException
+         */
         public void switchToMapBtn(ActionEvent event) throws IOException {
                 try {
                 Parent root = FXMLLoader.load(getClass().getResource("map.fxml"));
@@ -187,7 +227,7 @@ public class GUI_eventlisteners implements Initializable {
 
 
         /**
-         * Will Display A line if theres no changes
+         * Will Display A line if theres no changes. Probs needs some adjusting and could be removed if no time. For the colourful route thingy
          *
          * @param start
          * @param end
@@ -207,7 +247,7 @@ public class GUI_eventlisteners implements Initializable {
                 }
 
         /**
-         * Is meant to display the route with one change
+         * Is meant to display the route with one change. Probs needs some adjusting and could be removed if no time. For the colourful route thingy
          *
          * @param start
          * @param middle
@@ -235,7 +275,7 @@ public class GUI_eventlisteners implements Initializable {
                 }
 
         /**
-         * Is meant to display route with 2 changes
+         * Is meant to display route with 2 changes. Probs needs some adjusting and could be removed if no time. For the colourful route thingy
          *
          * @param start
          * @param middle
@@ -266,29 +306,84 @@ public class GUI_eventlisteners implements Initializable {
                 // find find start to end
                 }
 
-        public String getStart() {
-                return Start;
+        /**
+         * Sets up the from list view depending on corresponding combo box choice. Needs a function to get chosen line's stations
+         * from Another class. Set up atm to test dummy data
+         *
+         * @param event
+         */
+        public void getFromLine(ActionEvent event){
+                String linename = fromLineDropDown.getValue();
+                //List<String> firstLine = getStations(linename); Placeholder, function to get stations for first chosen line. Links with another class. Uses 1 string
+
+                if (linename.equals("GreenA")) {
+                        String[] stn = {"a", "b", "c"};
+
+                        /**
+                         * Just below this is useful and converts line list to observable list then populates the Listview. If statement not needed
+                         */
+                        List<String> stations = Arrays.asList(stn);
+                        ObservableList<String> observableList = FXCollections.observableList(stations);
+                        fromListView.getItems().clear();
+                        fromListView.getItems().addAll(observableList);
+                }
+                //for testing no needed
+                if (linename.equals("GreenB")) {
+                        String[] stn = {"e", "r", "x"};
+                        List<String> stations = Arrays.asList(stn);
+                        ObservableList<String> observableList = FXCollections.observableList(stations);
+                        fromListView.getItems().clear();
+                        fromListView.getItems().addAll(observableList);
+                }
+         }
+
+        /**
+         * Sets up the to list view depending on corresponding combo box choice. Needs a function to get chosen line's stations
+         * from Another class. Set up atm to test dummy data
+         *
+         * @param event
+         */
+        public void getToLine(ActionEvent event){
+                String linename = toLineDropdown.getValue();
+                //List<String> secondLine = getStations(linename); Placeholder, function to get stations for first chosen line. Links with another class. Uses 1 string
+
+                if (linename.equals("GreenA")) {
+                        String[] stn = {"a", "b", "c"};
+
+                        /**
+                         * Just below this is useful and converts line list to observable list then populates the Listview. If statement not needed
+                         */
+                        List<String> stations = Arrays.asList(stn);
+                        ObservableList<String> stnsObs = FXCollections.observableList(stations);
+                        toListView.getItems().clear();
+                        toListView.getItems().addAll(stnsObs);
                 }
 
-        public String getEnd() {
-                return End;
+                //for testing no needed
+                if (linename.equals("GreenB")) {
+                        String[] stn = {"e", "r", "x"};
+                        List<String> stations = Arrays.asList(stn);
+                        ObservableList<String> stnsObs = FXCollections.observableList(stations);
+                        toListView.getItems().clear();
+                        toListView.getItems().addAll(stnsObs);
                 }
+        }
 
-        //line.getName().addListener((obs, oldPerson, newPerson) -> {
-
-
-        public void test(ObservableMap<String, String[]> map){
+        /**
+         * method to get the final path. Will be called by both submit buttons. Needs a function to get from another class
+         *
+         * @param to
+         * @param from
+         */
+        public void finalRoute(String to, String from){
+                //List<String> path = function to find path. Links with another class. Uses 2 strings
+                String[] stn = {to, "p", from}; // For dummy test
+                List<String> path = Arrays.asList(stn);
+                ObservableList<String> pathObs = FXCollections.observableList(path);
+                resultingPath.getItems().clear();
+                resultingPath.getItems().addAll(pathObs);
 
         }
 
-
-        public void getLine(ActionEvent event){
-                String linename = fromLineDropDown.getValue();
-                for(int i = 0; i < map.length; i++) {
-                        if (linename.equals("GreenA")) {
-                                System.out.println("Hi");
-                        }
-                }
-         }
 
 }
