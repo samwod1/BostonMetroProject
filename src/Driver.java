@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 public class Driver {
 
 
-
+/*
 
     public static void main(String[] args) {
         new Thread() {
@@ -18,6 +18,9 @@ public class Driver {
         GUI_create runGUI = GUI_create.waitForStartUpTest();
       //  runGUI.submitbtn(ActionEvent event);
     }
+
+
+ */
 
 
 }

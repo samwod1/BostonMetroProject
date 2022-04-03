@@ -41,7 +41,6 @@ public abstract class GraphADT {
                 maxNodes = edges.get(i).get(1);
         }
 
-        maxNodes = maxNodes + 1;
         this.numNodes = maxNodes;
         System.out.println("maxNodes: " + maxNodes);
         //intiliases adjList
@@ -53,8 +52,8 @@ public abstract class GraphADT {
         System.out.println("adjList size: " + adjList.size());
 
         for(int i = 0; i < edges.size(); i++){
-            adjList.get(edges.get(i).get(1)).add(edges.get(i).get(0));
-            adjList.get(edges.get(i).get(0)).add(edges.get(i).get(1));
+            adjList.get(edges.get(i).get(1) - 1).add(edges.get(i).get(0));
+            adjList.get(edges.get(i).get(0) - 1).add(edges.get(i).get(1));
         }
 
         for(int i = 0; i < adjList.size(); i++){

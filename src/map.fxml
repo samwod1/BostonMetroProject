@@ -11,7 +11,7 @@
       <Button layoutX="403.0" layoutY="854.0" mnemonicParsing="false" onAction="#switchToMain" text="Back" />
       <ImageView fx:id="subwayImg" fitHeight="795.0" fitWidth="773.0" layoutX="37.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="file:/C:/Users/Nathan%20McKittrick/IdeaProjects/cs308-boston-metro-project/src/BostonSubway.jpg" />
+            <Image url="@BostonSubway.jpg" />
          </image>
          <cursor>
             <Cursor fx:constant="DEFAULT" />

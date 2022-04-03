@@ -33,7 +33,7 @@ public class Station {
     }
 
     public Integer getNumberAsint() {
-        return parseInt(name);
+        return parseInt(number);
     }
 
     public void setName(String name) {

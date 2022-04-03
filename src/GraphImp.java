@@ -80,12 +80,12 @@ public class GraphImp extends GraphADT {
     //and returns path
     public HashMap BFS(int root, int target)
     {
-        boolean visited[] = new boolean[getNumNodes()];
+        ArrayList<Integer> visited = new ArrayList<>();
         LinkedList<Integer> queue = new LinkedList<Integer>();
         HashMap<Integer, Integer> path = new HashMap<Integer, Integer>();
-        System.out.println(getNumNodes());
+        System.out.println("getNumNodes(): " + getNumNodes());
 
-        System.out.println(nNodes());
+        System.out.println("number of nodes: " + nNodes());
         boolean containsRoot = false;
         boolean containsTarget = false;
         for(int i=0; i < adjList.size(); i++){
@@ -102,7 +102,7 @@ public class GraphImp extends GraphADT {
             return path;
         }
 
-        visited[root] = true;
+        visited.add(root);
         queue.add(root);
         path.put(null, root);
 
@@ -120,8 +120,8 @@ public class GraphImp extends GraphADT {
             Iterator<Integer> iterator = adjList.get(root).listIterator();
             while (iterator.hasNext()){
                 int num = iterator.next();
-                if(visited[num] == false){
-                    visited[num] = true;
+                if(!visited.contains(num)){
+                    visited.add(num);
                     queue.add(num);
                 }
             }
@@ -173,7 +173,7 @@ public class GraphImp extends GraphADT {
         aList.add(a4);
 
         GraphImp graph = new GraphImp(aList);
-        System.out.print(graph);
+        //System.out.print(graph);
         //graph.BFS(1,5);
     }
 }
