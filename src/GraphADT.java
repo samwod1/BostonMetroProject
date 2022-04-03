@@ -79,7 +79,11 @@ public abstract class GraphADT {
 
     //takes root node and target node and stops when target node is found
     //and returns path
-    public abstract HashMap BFS(int root, int target);
+    public abstract ArrayList<Integer> BFS(int root, int target);
+
+    public abstract ArrayList<Integer> constructPath(HashMap<Integer, Integer> map);
+
+    public abstract HashMap constructHash(int root, int target);
 
     public abstract void printGraph();
     

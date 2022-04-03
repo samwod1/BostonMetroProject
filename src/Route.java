@@ -20,10 +20,10 @@ public class Route {
         Integer n1int = n1.getNumberAsint();
         Integer n2int = n2.getNumberAsint();
 
-        HashMap<Integer, Integer> hashpath = graph.BFS(n1int, n2int);
+        //HashMap<Integer, Integer> hashpath = graph.BFS(n1int, n2int);
         ArrayList<Station> path = new ArrayList<>();
 
-        ArrayList<Integer> intPath = getOrderFromHash(hashpath);
+        ArrayList<Integer> intPath = graph.BFS(n1int,n2int);
 
         for (int i = 0; i < intPath.size(); i++) {
             path.add(getStnFromInt(intPath.get(i)));
@@ -32,31 +32,8 @@ public class Route {
         return path;
     }
 
-    public ArrayList<Integer> getOrderFromHash(HashMap<Integer, Integer> map) {
-        Integer root = null;
-        ArrayList<Integer> order = new ArrayList<>();
-        for (Map.Entry<Integer, Integer> set : map.entrySet()) {
-            Integer ancestor = set.getKey();
-            if (ancestor == null) {
-                root = set.getValue();
-            }
-
-        }
-        order.add(root);
-
-        //need to find a way of getting the order from the root,
-        // may need to change the structure of hashmap in bfs
-        for (int i = 0; i < map.size(); i++) {
-            Integer child = map.get(root);
-            order.add(child);
-            root = child;
-        }
-
-        return order;
-    }
-
     public Station getStnFromInt(Integer n) {
-        ArrayList stations = NetworkConstructor.createStations();
+        ArrayList stations = NetworkConstructor.getStations();
         Station target = null;
 
         for (int i = 0; i < stations.size(); i++) {
