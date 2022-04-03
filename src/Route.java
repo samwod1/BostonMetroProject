@@ -23,11 +23,10 @@ public class Route {
         HashMap<Integer, Integer> hashpath = graph.BFS(n1int, n2int);
         ArrayList<Station> path = new ArrayList<>();
 
-        //path as list of tuples {stationName, [line]}
-        for (Map.Entry<Integer, Integer> set : hashpath.entrySet()) {
-            Integer stnNumber = set.getKey();
-            Station current = getStnFromInt(stnNumber);
+        ArrayList<Integer> intPath = getOrderFromHash(hashpath);
 
+        for (int i = 0; i < intPath.size(); i++) {
+            path.add(getStnFromInt(intPath.get(i)));
         }
 
         return path;
@@ -37,18 +36,23 @@ public class Route {
         Integer root = null;
         ArrayList<Integer> order = new ArrayList<>();
         for (Map.Entry<Integer, Integer> set : map.entrySet()) {
-            Integer ancestor = set.getValue();
+            Integer ancestor = set.getKey();
             if (ancestor == null) {
-                root = set.getKey();
+                root = set.getValue();
             }
 
         }
-
         order.add(root);
 
         //need to find a way of getting the order from the root,
         // may need to change the structure of hashmap in bfs
+        for (int i = 0; i < map.size(); i++) {
+            Integer child = map.get(root);
+            order.add(child);
+            root = child;
+        }
 
+        return order;
     }
 
     public Station getStnFromInt(Integer n) {

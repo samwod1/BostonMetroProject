@@ -104,13 +104,13 @@ public class GraphImp extends GraphADT {
 
         visited[root] = true;
         queue.add(root);
-        path.put(root, null);
+        path.put(null, root);
 
         while(queue.size() != 0){
             //pool is like pop but doesn't throw error when empty, just returns null
             int parent = root;
             root = queue.poll();
-            path.put(root,parent);
+            path.put(parent,root);
 
             if(root == target)
                 return path;
