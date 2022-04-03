@@ -76,6 +76,25 @@ public class NetworkConstructor {
         return connections;
     }
 
+    public static ArrayList<ArrayList<Integer>> connectionsInts(){
+        ArrayList<Station> stations = createStations();
+        ArrayList<ArrayList<Integer>> connections = new ArrayList<>();
+        //Very dirty contains duplicates i.e. [a,b] and [b,a]
+        for (int i = 0; i < stations.size(); i++) {
+            Station first = stations.get(i);
+            ArrayList<Integer> firstConnections = first.getConnections();
+            for (int j = 0; j < firstConnections.size(); j++) {
+                ArrayList<Integer> conn = new ArrayList<>();
+                Station second = stations.get(firstConnections.get(j)-1);
+                conn.add(first.getNumberAsint());
+                conn.add(second.getNumberAsint());
+                connections.add(conn);
+            }
+        }
+        System.out.println(connections);
+        return connections;
+    }
+
     public static void printStations(ArrayList stations){
         for (int i = 0; i < stations.size(); i++) {
             System.out.println(stations.get(i).toString());

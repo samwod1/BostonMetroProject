@@ -2,6 +2,8 @@
 
 import java.util.ArrayList;
 
+import static java.lang.Integer.parseInt;
+
 public class Station {
 
     String number;
@@ -28,6 +30,10 @@ public class Station {
 
     public String getName() {
         return name;
+    }
+
+    public Integer getNumberAsint() {
+        return parseInt(name);
     }
 
     public void setName(String name) {

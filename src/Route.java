@@ -1,63 +1,69 @@
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class Route {
     //need list of edges of node stations
 
     //[[state, downtown crossing],[state, government center],[
 
-    GraphImp graph = new GraphImp(//list in here);
+    public ArrayList<ArrayList<Integer>> cons = NetworkConstructor.connectionsInts();
 
-    public Route makeRoute(Station n1, Station n2) {
-        //find lines of each station
-        ArrayList linesn1 = n1.getLines();
-        ArrayList linesn2 = n2.getLines();
-
-        boolean sameLine = false;
-
-        //find if they share a line
-        for (int i = 0; i < linesn1.size(); i++) {
-            if(linesn2.contains(linesn1.get(i))) {
-                sameLine = true;
-            }
-        }
-
-        Station connect1;
-        Station connect2;
-
-        if (!sameLine) {
-
-            //checking if start and end are nodes
-            if (linesn1.size() > 1) {
-                connect1 = n1;
-            } else {
-                connect1 = closestNodeStation(n1);
-            }
-
-            if (linesn2.size() > 1) {
-                connect2 = n2;
-            } else {
-                connect2 = closestNodeStation(n2);
-            }
+    public GraphImp graph = new GraphImp(cons);
 
 
-            //send the connections to graph to find route
-            graph.BFS();
+
+    public ArrayList<Station> makeRoute(Station n1, Station n2) {
+
+        Integer n1int = n1.getNumberAsint();
+        Integer n2int = n2.getNumberAsint();
+
+        HashMap<Integer, Integer> hashpath = graph.BFS(n1int, n2int);
+        ArrayList<Station> path = new ArrayList<>();
+
+        //path as list of tuples {stationName, [line]}
+        for (Map.Entry<Integer, Integer> set : hashpath.entrySet()) {
+            Integer stnNumber = set.getKey();
+            Station current = getStnFromInt(stnNumber);
+
         }
 
         return path;
     }
 
-    public Station closestNodeStation(Station s) {
-        ArrayList cons = s.getConnections();
-        Station next = (Station) cons.get(0);
-        int nextsize = (next.getLines()).size();
+    public ArrayList<Integer> getOrderFromHash(HashMap<Integer, Integer> map) {
+        Integer root = null;
+        ArrayList<Integer> order = new ArrayList<>();
+        for (Map.Entry<Integer, Integer> set : map.entrySet()) {
+            Integer ancestor = set.getValue();
+            if (ancestor == null) {
+                root = set.getKey();
+            }
 
-        if (nextsize > 1) {
-            return next;
-        } else {
-            closestNodeStation(next);
         }
-        return null;
+
+        order.add(root);
+
+        //need to find a way of getting the order from the root,
+        // may need to change the structure of hashmap in bfs
+
     }
+
+    public Station getStnFromInt(Integer n) {
+        ArrayList stations = NetworkConstructor.createStations();
+        Station target = null;
+
+        for (int i = 0; i < stations.size(); i++) {
+            Station current = (Station) stations.get(i);
+            if (current.getNumberAsint() == n) {
+                target = current;
+            }
+        }
+
+        return target;
+    }
+
 
 }
