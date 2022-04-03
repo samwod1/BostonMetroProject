@@ -64,7 +64,7 @@ public class NetworkConstructor {
     public static Station stnfromStr(String stn){
         Station target = null;
         for (Station i: stations) {
-            if(i.getName() == stn) {
+            if(i.getName().equals(stn)) {
                 target = i;
             }
         }

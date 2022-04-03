@@ -13,6 +13,14 @@ public class Controller {
         System.out.println(stn2);
 
         System.out.println(route.makeRoute(stn2,stn1));
+
+        Station stn3 = nwc.stnfromStr("Wellington");
+        System.out.println(stn3);
+
+        Station stn4 = nwc.stnfromStr("Aquarium");
+        System.out.println(stn4);
+
+        System.out.println(route.makeRoute(stn4,stn3));
     }
 
 }
