@@ -9,59 +9,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.QuadCurve?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="MainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="914.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI_eventlisteners">
    <children>
       <Separator layoutX="312.0" layoutY="-8.0" orientation="VERTICAL" prefHeight="961.0" prefWidth="14.0" />
-      <TextField fx:id="fromtxt" layoutX="29.0" layoutY="128.0" prefHeight="25.0" prefWidth="250.0" />
-      <TextField fx:id="totxt" layoutX="29.0" layoutY="203.0" prefHeight="25.0" prefWidth="250.0" />
-      <Button fx:id="submitbtn" layoutX="107.0" layoutY="247.0" mnemonicParsing="false" onAction="#submitbtn" text="Submit Route" />
-      <Label layoutX="140.0" layoutY="96.0" text="From" />
-      <Label layoutX="147.0" layoutY="175.0" text="To" />
+      <TextField fx:id="fromtxt" layoutX="32.0" layoutY="128.0" prefHeight="25.0" prefWidth="250.0" />
+      <TextField fx:id="totxt" layoutX="31.0" layoutY="203.0" prefHeight="25.0" prefWidth="250.0" />
+      <Button fx:id="submitbtn" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="250.0" mnemonicParsing="false" onAction="#submitbtn" prefHeight="30.0" prefWidth="94.0" text="Submit Route" />
+      <Label layoutX="143.0" layoutY="96.0" text="From" />
+      <Label layoutX="149.0" layoutY="185.0" text="To" />
       <Separator layoutX="-8.0" layoutY="309.0" prefHeight="11.0" prefWidth="326.0" />
       <Label fx:id="Warning" layoutX="67.0" layoutY="55.0" prefHeight="17.0" prefWidth="163.0" />
-      <Pane fx:id="two_change" layoutX="31.0" layoutY="318.0" prefHeight="581.0" prefWidth="274.0" visible="false">
-         <children>
-            <Label fx:id="tcstart" contentDisplay="CENTER" layoutX="17.0" layoutY="75.0" text="Start" />
-            <Label fx:id="tcmiddlestn1" contentDisplay="CENTER" layoutX="11.0" layoutY="455.0" text="Middle 1" />
-            <Line fx:id="tcline1" endY="-38.0" layoutX="17.0" layoutY="144.0" startY="294.0" />
-            <Label fx:id="tcstop1" contentDisplay="CENTER" layoutX="29.0" layoutY="272.0" text="x Stops" />
-            <Label fx:id="tcend" contentDisplay="CENTER" layoutX="188.0" layoutY="75.0" text="End" />
-            <Label fx:id="tcmiddlestn2" contentDisplay="CENTER" layoutX="187.0" layoutY="455.0" text="Middle 2" />
-            <Line fx:id="tcline2" endY="-38.0" layoutX="187.0" layoutY="144.0" startY="294.0" />
-            <Label fx:id="tcstop2" contentDisplay="CENTER" layoutX="197.0" layoutY="272.0" text="x Stops" />
-            <Label fx:id="tclinename1" contentDisplay="CENTER" layoutX="33.0" layoutY="39.0" text="x Line" />
-            <Label fx:id="twoclinename2" contentDisplay="CENTER" layoutX="202.0" layoutY="39.0" text="y Line" />
-            <QuadCurve fx:id="tcline3" controlX="31.0" controlY="64.0" endX="97.0" fill="#1f93ff00" layoutX="79.0" layoutY="488.0" startX="-34.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label fx:id="tclinename3" contentDisplay="CENTER" layoutX="97.0" layoutY="530.0" text="z line" />
-         </children>
-      </Pane>
-      <Pane fx:id="no_change" layoutX="-26.0" prefHeight="494.0" prefWidth="274.0" visible="false">
-         <children>
-            <Label fx:id="ncstartstn" contentDisplay="CENTER" layoutX="116.0" layoutY="83.0" text="Start" />
-            <Label fx:id="ncendstn" contentDisplay="CENTER" layoutX="118.0" layoutY="456.0" text="End" />
-            <Line fx:id="ncline" endY="-38.0" layoutX="128.0" layoutY="152.0" startY="294.0" />
-            <Label fx:id="ncstops" contentDisplay="CENTER" layoutX="143.0" layoutY="272.0" text="x Stops" />
-            <Label fx:id="nclinename" contentDisplay="CENTER" layoutX="113.0" layoutY="42.0" text="x Line" />
-         </children>
-      </Pane>
-      <Pane fx:id="one_change" layoutX="25.0" prefHeight="494.0" prefWidth="274.0" visible="false">
-         <children>
-            <Label fx:id="ocstartstn" contentDisplay="CENTER" layoutX="17.0" layoutY="83.0" text="Start" />
-            <Label fx:id="ocmiddlestn" contentDisplay="CENTER" layoutX="11.0" layoutY="463.0" text="Middle" />
-            <Line fx:id="ocline1" endY="-38.0" layoutX="17.0" layoutY="152.0" startY="294.0" />
-            <Label fx:id="ocstops" contentDisplay="CENTER" layoutX="29.0" layoutY="272.0" text="x Stops" />
-            <Label fx:id="ocmiddlestn2" contentDisplay="CENTER" layoutX="188.0" layoutY="83.0" text="Middle" />
-            <Label fx:id="ocendstn" contentDisplay="CENTER" layoutX="187.0" layoutY="463.0" text="End" />
-            <Line fx:id="ocline2" endY="-38.0" layoutX="187.0" layoutY="152.0" startY="294.0" />
-            <Label fx:id="ocstops2" contentDisplay="CENTER" layoutX="197.0" layoutY="272.0" text="x Stops" />
-            <Label fx:id="oclinename1" contentDisplay="CENTER" layoutX="53.0" layoutY="39.0" text="x Line" />
-            <Label fx:id="oclinename2" contentDisplay="CENTER" layoutX="202.0" layoutY="39.0" text="y Line" />
-         </children>
-      </Pane>
       <ListView fx:id="fromListView" editable="true" layoutX="398.0" layoutY="96.0" prefHeight="782.0" prefWidth="200.0" />
-      <Button fx:id="switchToMapBtn" layoutX="117.0" layoutY="40.0" mnemonicParsing="false" onAction="#switchToMapBtn" text="Show Map" />
+      <Button fx:id="switchToMapBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="115.0" layoutY="349.0" mnemonicParsing="false" onAction="#switchToMapBtn" prefHeight="30.0" prefWidth="83.0" text="Show Map" />
       <ListView fx:id="toListView" editable="true" layoutX="678.0" layoutY="96.0" prefHeight="782.0" prefWidth="200.0" />
       <Label layoutX="631.0" layoutY="464.0" text="To" />
       <ListView fx:id="resultingPath" editable="true" layoutX="1013.0" layoutY="96.0" prefHeight="782.0" prefWidth="200.0" />
@@ -73,5 +34,27 @@
       <Line endX="17.0" layoutX="639.0" layoutY="494.0" startX="-16.0" />
       <Line endX="8.0" endY="75.0" layoutX="639.0" layoutY="407.0" startX="17.5" startY="87.0" />
       <Line endX="8.0" endY="75.0" layoutX="649.0" layoutY="417.0" startX="-1.0" startY="86.0" />
+      <Label fx:id="command" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="46.0" prefHeight="18.0" prefWidth="319.0" text="Enter Current Station And Destination Below" textAlignment="CENTER" underline="true" />
+      <Pane fx:id="keyBG" layoutX="55.0" layoutY="437.0" prefHeight="422.0" prefWidth="200.0">
+         <children>
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="2.0" layoutY="275.0" prefHeight="18.0" prefWidth="200.0" text="|GB = Green B Line" textAlignment="CENTER" />
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="2.0" layoutY="315.0" prefHeight="18.0" prefWidth="200.0" text="|GD = Green D Line" textAlignment="CENTER" />
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="2.0" layoutY="295.0" prefHeight="18.0" prefWidth="200.0" text="|GC = Green C Line" textAlignment="CENTER" />
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="2.0" layoutY="335.0" prefHeight="18.0" prefWidth="200.0" text="|GE = Green E Line" textAlignment="CENTER" />
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="2.0" layoutY="200.0" prefHeight="18.0" prefWidth="200.0" text="|RA = Red A Line" textAlignment="CENTER" />
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="2.0" layoutY="220.0" prefHeight="18.0" prefWidth="200.0" text="|RB = Red B Line" textAlignment="CENTER" />
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="2.0" layoutY="180.0" prefHeight="18.0" prefWidth="200.0" text="|R = Red Line" textAlignment="CENTER" />
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="2.0" layoutY="255.0" prefHeight="18.0" prefWidth="200.0" text="|G = Green Line" textAlignment="CENTER" />
+            <Label layoutX="91.0" layoutY="4.0" text="Key" underline="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_LEFT" layoutX="2.0" layoutY="40.0" prefHeight="18.0" prefWidth="200.0" text="|X &gt; |Y = Line Change" />
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="2.0" layoutY="75.0" prefHeight="18.0" prefWidth="200.0" text="|B = Blue Line" textAlignment="CENTER" />
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="2.0" layoutY="110.0" prefHeight="18.0" prefWidth="200.0" text="|M = Mattapan Line" textAlignment="CENTER" />
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="2.0" layoutY="145.0" prefHeight="18.0" prefWidth="200.0" text="|O = Orange Line" textAlignment="CENTER" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

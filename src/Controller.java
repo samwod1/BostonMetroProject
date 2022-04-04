@@ -1,10 +1,15 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 public class Controller {
 
     //need to make a function to tell when there's a change of line
 
+    NetworkConstructor nwc = new NetworkConstructor();
 
-    public static void main(String[] args) {
-        NetworkConstructor nwc = new NetworkConstructor();
+    public void run() {
+      //  NetworkConstructor nwc = new NetworkConstructor();
         Route route = new Route();
 
         Station stn1 = nwc.stations.get(11);
@@ -21,6 +26,56 @@ public class Controller {
         System.out.println(stn4);
 
         System.out.println(route.makeRoute(stn4,stn3));
+
+     //   System.out.println(nwc.getLines());
     }
+
+    /**
+    public void mainRun() {
+        NetworkConstructor.createStations();
+        lineFromStr("23");
+    }
+*/
+
+    /**
+    public Station stnfromstr(String stn){
+
+    }
+     * @return*/
+
+   // List<Station>
+
+    public Boolean[] errorCheck(String current, String dest) {
+        current = current.replaceAll("[^a-zA-Z]", "");
+        dest = dest.replaceAll("[^a-zA-Z]", "");
+        boolean curExists = false;
+        boolean destExists = false;
+        ArrayList<Station> stations = nwc.getStations();
+        for (Station station : stations) {
+            String stnName = station.getName();
+            stnName = stnName.replaceAll("[^a-zA-Z]", "");
+            if (current.equalsIgnoreCase(stnName)) {
+                curExists = true;
+            }
+            if (dest.equalsIgnoreCase(stnName)) {
+                destExists = true;
+            }
+            if (destExists && curExists) {
+                break;
+            }
+        }
+        return new Boolean[]{curExists, destExists};
+        //  ArrayList lineStn = nwc.getStations();
+        // System.out.println(lineStn);
+        //   return lineStn;
+    }
+
+
+    /**
+    public ArrayList<Line> getLineStations(String linestr){
+
+    }
+
+*/
 
 }

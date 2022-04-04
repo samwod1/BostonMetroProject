@@ -1,11 +1,15 @@
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static java.lang.Integer.parseInt;
 
 public class NetworkConstructor {
 
     static ArrayList<Station> stations = createStations();
+    static ArrayList<Line> stnlines = new ArrayList<>();
+
 
 
     public static ArrayList<Station> createStations(){
@@ -39,6 +43,7 @@ public class NetworkConstructor {
         for (int i = 0; i < lineNames.size(); i++) {
             ArrayList s = new ArrayList();
             Line line = new Line(lineNames.get(i), s);
+            //lineStns = line;
             lines.add(line);
         }
 
@@ -60,6 +65,10 @@ public class NetworkConstructor {
     public static ArrayList<Station> getStations(){
         return stations;
     }
+
+    //public static ArrayList<Line> getLines(){
+      //  return lines;
+  //  }
 
     public static Station stnfromStr(String stn){
         Station target = null;
@@ -124,7 +133,7 @@ public class NetworkConstructor {
         return connections;
     }
 
-    public static void printStations(ArrayList stations){
+    public static void printStations(List<Station> stations){
         for (int i = 0; i < stations.size(); i++) {
             System.out.println(stations.get(i).toString());
         }

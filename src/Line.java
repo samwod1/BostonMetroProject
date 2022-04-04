@@ -1,6 +1,7 @@
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Line {
     String name;
@@ -11,9 +12,7 @@ public class Line {
         this.stations = stations;
     }
 
-    public void addStation(Station station){
-        this.stations.add(station);
-    }
+    public void addStation(Station station){ this.stations.add(station); }
 
     public String getName() {
         return name;
