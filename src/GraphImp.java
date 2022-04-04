@@ -143,27 +143,33 @@ public class GraphImp extends GraphADT {
             return hash;
         }
 
-        visited.add(root);
         queue.add(root);
         hash.put(null, root);
         while(queue.size() != 0){
             //pool is like pop but doesn't throw error when empty, just returns null
-            int parent = root;
-            root = queue.poll();
+            int parent = queue.poll();
 
-            if(root == target)
+            if(parent == target)
                 return hash;
 
-            Iterator<Integer> iterator = adjList.get(root-1).listIterator();
+
+            Iterator<Integer> iterator = adjList.get(parent-1).listIterator();
             while (iterator.hasNext()){
+
 
                 int num = iterator.next();
                 //System.out.println("iterator.next: " + num);
                 if(!visited.contains(num)){
                     queue.add(num);
-                    hash.put(root,num);
+                    System.out.println(queue);
+                    hash.put(parent,num);
+
+                    if(num == target)
+                        return hash;
                 }
+
             }
+            visited.add(parent);
         }
 
         return hash;
