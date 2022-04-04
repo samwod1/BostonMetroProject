@@ -8,19 +8,19 @@ public class Controller {
         Route route = new Route();
 
         Station stn1 = nwc.stations.get(11);
-        System.out.println(stn1);
+//        System.out.println(stn1);
         Station stn2 = nwc.stations.get(0);
-        System.out.println(stn2);
+//        System.out.println(stn2);
 
-        System.out.println(route.makeRoute(stn2,stn1));
+//        System.out.println(route.makeRoute(stn2,stn1));
 
         Station stn3 = nwc.stnfromStr("Wellington");
-        System.out.println(stn3);
+//        System.out.println(stn3);
 
-        Station stn4 = nwc.stnfromStr("Aquarium");
-        System.out.println(stn4);
+        Station stn4 = nwc.stnfromStr("OakGrove");
+//        System.out.println(stn4);
 
-        System.out.println(route.makeRoute(stn4,stn3));
+        System.out.println(route.makeRoute(stn3,stn4));
     }
 
 }

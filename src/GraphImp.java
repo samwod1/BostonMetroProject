@@ -78,6 +78,7 @@ public class GraphImp extends GraphADT {
     public ArrayList<Integer> BFS(int root, int target)
     {
        HashMap hash = constructHash(root, target);
+        System.out.println(hash);
        ArrayList<Integer> path = constructPath(hash);
 
        return path;
@@ -116,11 +117,15 @@ public class GraphImp extends GraphADT {
 
     }
 
+//    public HashMap constructHash(int root, int target) {
+//
+//    }
+
     public HashMap constructHash(int root, int target){
 
         ArrayList<Integer> visited = new ArrayList<>();
         LinkedList<Integer> queue = new LinkedList<Integer>();
-        HashMap<Integer, Integer> path = new HashMap<Integer, Integer>();
+        HashMap<Integer, Integer> hash = new HashMap<Integer, Integer>();
 
         boolean containsRoot = false;
         boolean containsTarget = false;
@@ -135,19 +140,19 @@ public class GraphImp extends GraphADT {
 
         if(!containsRoot || !containsTarget){
             System.out.println("Please enter a valid target");
-            return path;
+            return hash;
         }
 
         visited.add(root);
         queue.add(root);
-        path.put(null, root);
+        hash.put(null, root);
         while(queue.size() != 0){
             //pool is like pop but doesn't throw error when empty, just returns null
             int parent = root;
             root = queue.poll();
 
             if(root == target)
-                return path;
+                return hash;
 
             Iterator<Integer> iterator = adjList.get(root-1).listIterator();
             while (iterator.hasNext()){
@@ -155,14 +160,13 @@ public class GraphImp extends GraphADT {
                 int num = iterator.next();
                 //System.out.println("iterator.next: " + num);
                 if(!visited.contains(num)){
-                    visited.add(num);
                     queue.add(num);
-                    path.put(root,num);
+                    hash.put(root,num);
                 }
             }
         }
 
-        return path;
+        return hash;
     }
 
     //create construct graph method which takes in input and crates adjacency list.
