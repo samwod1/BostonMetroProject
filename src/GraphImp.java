@@ -1,9 +1,6 @@
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
 
 
 public class GraphImp extends GraphADT {
@@ -78,14 +75,53 @@ public class GraphImp extends GraphADT {
 
     //takes root node and target node and stops when target node is found
     //and returns path
-    public HashMap BFS(int root, int target)
+    public ArrayList<Integer> BFS(int root, int target)
     {
+       HashMap hash = constructHash(root, target);
+       ArrayList<Integer> path = constructPath(hash);
+
+       return path;
+    }
+
+    public void printGraph(){
+        int src_vertex = 0;
+        int list_size = adjList.size();
+
+        while(src_vertex < list_size){
+
+        }
+    }
+
+    public ArrayList<Integer> constructPath(HashMap<Integer, Integer> map){
+        Integer root = null;
+        ArrayList<Integer> order = new ArrayList<>();
+        for (Map.Entry<Integer, Integer> set : map.entrySet()) {
+            Integer ancestor = set.getKey();
+            if (ancestor == null) {
+                root = set.getValue();
+            }
+
+        }
+        order.add(root);
+
+        //need to find a way of getting the order from the root,
+        // may need to change the structure of hashmap in bfs
+        for (int i = 0; i < map.size(); i++) {
+            Integer child = map.get(root);
+            order.add(child);
+            root = child;
+        }
+
+        return order;
+
+    }
+
+    public HashMap constructHash(int root, int target){
+
         ArrayList<Integer> visited = new ArrayList<>();
         LinkedList<Integer> queue = new LinkedList<Integer>();
         HashMap<Integer, Integer> path = new HashMap<Integer, Integer>();
-        System.out.println("getNumNodes(): " + getNumNodes());
 
-        System.out.println("number of nodes: " + nNodes());
         boolean containsRoot = false;
         boolean containsTarget = false;
         for(int i=0; i < adjList.size(); i++){
@@ -105,38 +141,28 @@ public class GraphImp extends GraphADT {
         visited.add(root);
         queue.add(root);
         path.put(null, root);
-
         while(queue.size() != 0){
             //pool is like pop but doesn't throw error when empty, just returns null
             int parent = root;
             root = queue.poll();
-            path.put(parent,root);
 
             if(root == target)
                 return path;
 
-            System.out.print(root+" ");
-
-            Iterator<Integer> iterator = adjList.get(root).listIterator();
+            Iterator<Integer> iterator = adjList.get(root-1).listIterator();
             while (iterator.hasNext()){
+
                 int num = iterator.next();
+                //System.out.println("iterator.next: " + num);
                 if(!visited.contains(num)){
                     visited.add(num);
                     queue.add(num);
+                    path.put(root,num);
                 }
             }
         }
 
         return path;
-    }
-
-    public void printGraph(){
-        int src_vertex = 0;
-        int list_size = adjList.size();
-
-        while(src_vertex < list_size){
-
-        }
     }
 
     //create construct graph method which takes in input and crates adjacency list.
@@ -158,7 +184,7 @@ public class GraphImp extends GraphADT {
         aList.add(a1);
 
         ArrayList<Integer> a2 = new ArrayList<Integer>();
-        a2.add(2);
+        a2.add(1);
         a2.add(3);
         aList.add(a2);
 
@@ -168,12 +194,28 @@ public class GraphImp extends GraphADT {
         aList.add(a3);
 
         ArrayList<Integer> a4 = new ArrayList<Integer>();
-        a4.add(2);
+        a4.add(1);
         a4.add(5);
         aList.add(a4);
 
+        ArrayList<Integer> a5 = new ArrayList<Integer>();
+        a5.add(5);
+        a5.add(6);
+        aList.add(a5);
+
+        ArrayList<Integer> a6 = new ArrayList<Integer>();
+        a6.add(5);
+        a6.add(7);
+        aList.add(a6);
+
+        ArrayList<Integer> a7 = new ArrayList<Integer>();
+        a7.add(7);
+        a7.add(8);
+        aList.add(a7);
+
+
         GraphImp graph = new GraphImp(aList);
         //System.out.print(graph);
-        //graph.BFS(1,5);
+        System.out.println(graph.BFS(1,8));
     }
 }

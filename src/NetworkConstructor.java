@@ -5,6 +5,9 @@ import static java.lang.Integer.parseInt;
 
 public class NetworkConstructor {
 
+    static ArrayList<Station> stations = createStations();
+
+
     public static ArrayList<Station> createStations(){
         ArrayList<ArrayList<String>> textLines = InputReader.readFile();
         ArrayList<String> lineNames = new ArrayList<>();
@@ -54,8 +57,37 @@ public class NetworkConstructor {
         return stations;
     }
 
+    public static ArrayList<Station> getStations(){
+        return stations;
+    }
+
+    public static Station stnfromStr(String stn){
+        Station target = null;
+        for (Station i: stations) {
+            if(i.getName().equals(stn)) {
+                target = i;
+            }
+        }
+
+        return target;
+    }
+
+    public static Station getStnFromInt(Integer n) {
+        ArrayList stations = getStations();
+        Station target = null;
+
+        for (int i = 0; i < stations.size(); i++) {
+            Station current = (Station) stations.get(i);
+            if (current.getNumberAsint() == n) {
+                target = current;
+            }
+        }
+
+        return target;
+    }
+
     public static ArrayList<ArrayList<Station>> connections(){
-        ArrayList<Station> stations = createStations();
+        ArrayList<Station> stations = getStations();
         ArrayList<ArrayList<Station>> connections = new ArrayList<>();
         //Very dirty contains duplicates i.e. [a,b] and [b,a]
         for (int i = 0; i < stations.size(); i++) {
