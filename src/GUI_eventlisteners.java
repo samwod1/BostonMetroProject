@@ -1,7 +1,3 @@
-
-
-
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
@@ -32,18 +28,18 @@ import java.net.URL;
 import java.util.*;
 import java.util.List;
 
-
 public class GUI_eventlisteners implements Initializable {
 
-         private Stage stage;
-         private Scene scene;
-         private Parent root;
-         String Start = "";
-         String End = "";
+        Controller controller = new Controller();
+        private Stage stage;
+        private Scene scene;
+        private Parent root;
+        String Start = "";
+        String End = "";
 
 
          /**
-         * Set Up Listviews and Combo boxes
+         * Set Up Ids od the fxml file objects
          */
         @FXML
         private ListView<String> fromListView;
@@ -55,22 +51,13 @@ public class GUI_eventlisteners implements Initializable {
         private ComboBox<String> fromLineDropDown;
         @FXML
         private ComboBox<String> toLineDropdown;
-        /**
-         * To setup buttons and text field
-         */
         @FXML
         private TextField fromtxt;
         @FXML
         private TextField totxt;
-
         @FXML
         private Label command;
 
-
-        Controller controller = new Controller();
-
-        String[] lines = {"Red", "RedA", "RedB", "Blue", "Orange", "Mattapan",
-                "Green", "GreenB", "GreenC", "GreenD", "GreenE"};
 
         /**
          *
@@ -80,7 +67,9 @@ public class GUI_eventlisteners implements Initializable {
          * @param resourceBundle
          */
         @Override
-        public void initialize(URL url, ResourceBundle resourceBundle) {
+        public void initialize(URL url, ResourceBundle resourceBundle){
+                String[] lines = controller.getLineNames().toArray(new String[0]);
+
                 fromtxt.setText(Start);
                 totxt.setText(End);
 
@@ -99,7 +88,7 @@ public class GUI_eventlisteners implements Initializable {
          *
          * @param event
          */
-        public void submitbtn(ActionEvent event) {
+        public void submitBtnText(ActionEvent event){
                 try {
                 Start = fromtxt.getText();
                 End = totxt.getText();
@@ -122,14 +111,12 @@ public class GUI_eventlisteners implements Initializable {
          * Submits when first 2 list views are chosen
          * @param event
          */
-        public void submitbtn2(ActionEvent event) {
+        public void submitBtnList(ActionEvent event){
                 try {
                         ObservableList<String> fromObs;
                         ObservableList<String> toObs;
-
                         fromObs = fromListView.getSelectionModel().getSelectedItems();
                         toObs = toListView.getSelectionModel().getSelectedItems();
-
                         if (!fromObs.isEmpty() && !toObs.isEmpty()) {
 
                                 String from = "";
@@ -146,8 +133,6 @@ public class GUI_eventlisteners implements Initializable {
 
                                 finalRoute(from, to);
                         }
-
-
                 } catch (Exception e) {
                         System.out.println(e);
                 }
@@ -169,7 +154,7 @@ public class GUI_eventlisteners implements Initializable {
                 } catch (Exception e) {
                 e.printStackTrace();
                 }
-                }
+        }
 
         /**
          * Sets up the from list view depending on corresponding combo box choice. Needs a function to get chosen line's stations
@@ -179,28 +164,10 @@ public class GUI_eventlisteners implements Initializable {
          */
         public void getFromLine(ActionEvent event){
                 String linename = fromLineDropDown.getValue();
-                //List<String> firstLine = getStations(linename); Placeholder, function to get stations for first chosen line. Links with another class. Uses 1 string
-
-               // List<String> firstLine = line.
-                if (linename.equals("GreenB")) {
-                        String[] stn = {"Harvard", "MIT", "SummitAvenue"};
-
-                        /**
-                         * Just below this is useful and converts line list to observable list then populates the Listview. If statement not needed
-                         */
-                        List<String> stations = Arrays.asList(stn);
-                        ObservableList<String> observableList = FXCollections.observableList(stations);
-                        fromListView.getItems().clear();
-                        fromListView.getItems().addAll(observableList);
-                }
-                //for testing no needed
-                if (linename.equals("Mattapan")) {
-                        String[] stn = {"CapenStreet", "Bellgrove", "Parkhill"};
-                        List<String> stations = Arrays.asList(stn);
-                        ObservableList<String> observableList = FXCollections.observableList(stations);
-                        fromListView.getItems().clear();
-                        fromListView.getItems().addAll(observableList);
-                }
+                ArrayList<String> stnNames = controller.getLineStations(linename);
+                ObservableList<String> observableList = FXCollections.observableList(stnNames);
+                fromListView.getItems().clear();
+                fromListView.getItems().addAll(observableList);
          }
 
         /**
@@ -211,29 +178,10 @@ public class GUI_eventlisteners implements Initializable {
          */
         public void getToLine(ActionEvent event){
                 String linename = toLineDropdown.getValue();
-              //  List<String> secondLine = Controller.lineFromStr(linename); Placeholder, function to get stations for first chosen line. Links with another class. Uses 1 string
-                //line.
-
-                if (linename.equals("GreenB")) {
-                        String[] stn = {"Harvard", "MIT", "SummitAvenue"};
-
-                        /**
-                         * Just below this is useful and converts line list to observable list then populates the Listview. If statement not needed
-                         */
-                        List<String> stations = Arrays.asList(stn);
-                        ObservableList<String> stnsObs = FXCollections.observableList(stations);
-                        toListView.getItems().clear();
-                        toListView.getItems().addAll(stnsObs);
-                }
-
-                //for testing no needed
-                if (linename.equals("Mattapan")) {
-                        String[] stn = {"CapenStreet", "Bellgrove", "Parkhill"};
-                        List<String> stations = Arrays.asList(stn);
-                        ObservableList<String> stnsObs = FXCollections.observableList(stations);
-                        toListView.getItems().clear();
-                        toListView.getItems().addAll(stnsObs);
-                }
+                ArrayList<String> stnNames = controller.getLineStations(linename);
+                ObservableList<String> observableList = FXCollections.observableList(stnNames);
+                toListView.getItems().clear();
+                toListView.getItems().addAll(observableList);
         }
 
         /**
@@ -312,8 +260,5 @@ public class GUI_eventlisteners implements Initializable {
                 }
                 return shrtLine;
         }
-        
-
-
 
 }

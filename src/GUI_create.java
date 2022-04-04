@@ -67,6 +67,7 @@ public class GUI_create extends Application {
             Parent root = loader.load();
             GUI_eventlisteners startEvents = loader.getController();
             primaryStage.setTitle("Boston Subway");
+            primaryStage.setResizable(false);
             Scene scene = new Scene(root);
             String css = this.getClass().getResource("bstnsoobway.css").toExternalForm();
             scene.getStylesheets().add(css);

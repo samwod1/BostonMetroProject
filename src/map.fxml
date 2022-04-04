@@ -5,11 +5,15 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="931.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MapScene">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="970.0" prefWidth="963.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MapScene">
    <children>
-      <Button layoutX="403.0" layoutY="854.0" mnemonicParsing="false" onAction="#switchToMain" text="Back" />
-      <ImageView fx:id="subwayImg" fitHeight="795.0" fitWidth="773.0" layoutX="37.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+      <Button layoutX="451.0" layoutY="895.0" mnemonicParsing="false" onAction="#switchToMain" text="Back">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <ImageView fx:id="subwayImg" fitHeight="852.0" fitWidth="950.0" layoutX="57.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@BstnSubway.png" />
          </image>

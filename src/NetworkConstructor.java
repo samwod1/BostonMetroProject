@@ -8,15 +8,14 @@ import static java.lang.Integer.parseInt;
 public class NetworkConstructor {
 
     static ArrayList<Station> stations = createStations();
-    static ArrayList<Line> stnlines = new ArrayList<>();
-
+    static ArrayList<Line> lines = createLines();
+    static ArrayList<String> lineNames = new ArrayList<>();
 
 
     public static ArrayList<Station> createStations(){
         ArrayList<ArrayList<String>> textLines = InputReader.readFile();
-        ArrayList<String> lineNames = new ArrayList<>();
+        lineNames = new ArrayList<String>();
         ArrayList<Station> stations = new ArrayList<>();
-        ArrayList<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < textLines.size(); i++) {
             ArrayList<String> temp = textLines.get(i);
@@ -24,8 +23,9 @@ public class NetworkConstructor {
             ArrayList connections = new ArrayList();
             for (int j = 2; j < temp.size(); j+=3) {
                 l.add(temp.get(j));
-                if (lineNames.contains(temp.get(j)) == false) {
+                if (!lineNames.contains(temp.get(j))) {
                     lineNames.add(temp.get(j));
+                    System.out.println("|||||" + lineNames);
                 }
                 for (int k = 1; k <= 2; k++) {
                     if (connections.contains(temp.get(j+k)) == false){
@@ -39,38 +39,47 @@ public class NetworkConstructor {
             Station s = new Station(temp.get(0),temp.get(1), l, connections);
             stations.add(s);
         }
-
-        for (int i = 0; i < lineNames.size(); i++) {
-            ArrayList s = new ArrayList();
-            Line line = new Line(lineNames.get(i), s);
-            //lineStns = line;
-            lines.add(line);
-        }
-
-        for (int i = 0; i < stations.size(); i++) {
-            ArrayList<String> stationLines = stations.get(i).getLines();
-            for (int j = 0; j < stationLines.size(); j++) {
-                String current = stationLines.get(j);
-                for (int k = 0; k < lines.size(); k++) {
-                    if (lines.get(k).getName() == current){
-                        lines.get(k).addStation(stations.get(i));
-                    }
-                }
-            }
-        }
-        stnlines=lines;
-        //System.out.println("---------------");
-        //for (int i = 0; i < stnlines.size(); i++) {
-        //    System.out.println(stnlines.get(i).toString());
-        //}
-        //System.out.println("---------------");
-        //printStations(stations);
         return stations;
     }
+
+
+    public static ArrayList<Line> createLines(){
+        ArrayList<Line> lines = new ArrayList<>();
+
+        System.out.println("Innest " + lineNames);
+        for (int i = 0; i < lineNames.size(); i++) {
+            ArrayList<Station> lineStns = new ArrayList<>();
+            for (int j = 0; j < stations.size(); j++) {
+                ArrayList<String> arrLines = stations.get(j).getLines();
+                for (int k = 0; k < arrLines.size(); k++) {
+                    if (lineNames.get(i).equals(arrLines.get(k))) {
+                        lineStns.add(stations.get(j));
+                        System.out.println("Innest");
+                    }
+                }
+                System.out.println("Innest");
+            }
+            Line l = new Line(lineNames.get(i), lineStns);
+            lines.add(l);
+        }
+        return lines;
+    }
+
 
     public static ArrayList<Station> getStations(){
         return stations;
     }
+
+    public static ArrayList<Line> getStnlines(){
+        return lines;
+    }
+
+
+
+    public static ArrayList<String> getLineNames(){
+        return lineNames;
+    }
+
 
     //public static ArrayList<Line> getLines(){
       //  return lines;

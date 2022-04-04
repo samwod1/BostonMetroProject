@@ -7,7 +7,7 @@ public class Line {
     String name;
     ArrayList<Station> stations;
 
-    public Line(String name, ArrayList stations) {
+    public Line(String name, ArrayList<Station> stations) {
         this.name = name;
         this.stations = stations;
     }
@@ -30,11 +30,11 @@ public class Line {
         this.name = name;
     }
 
-    public ArrayList getStations() {
+    public ArrayList<Station> getStations() {
         return stations;
     }
 
-    public void setStations(ArrayList stations) {
+    public void setStations(ArrayList<Station> stations) {
         this.stations = stations;
     }
 }
