@@ -23,6 +23,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.QuadCurve;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 import java.awt.*;
 import java.io.IOException;
@@ -37,8 +38,8 @@ public class GUI_eventlisteners implements Initializable {
          private Stage stage;
          private Scene scene;
          private Parent root;
-         String Start;
-         String End;
+         String Start = "";
+         String End = "";
 
 
          /**
@@ -61,80 +62,15 @@ public class GUI_eventlisteners implements Initializable {
         private TextField fromtxt;
         @FXML
         private TextField totxt;
-        @FXML
-        private Pane two_change;
-        @FXML
-        private Pane one_change;
-        /**
-         * Next few is for no changes labels and lines. nc = no changes
-         */
-        @FXML
-        private Pane no_change;
-        @FXML
-        private Label nclinename;
-        @FXML
-        private Label ncstartstn;
-        @FXML
-        private Label ncstops;
-        @FXML
-        private Label ncendstn;
-        @FXML
-        private Line ncline;
-        /**
-         * Next few is for one change labels and lines. oc = one change
-         */
-        @FXML
-        private Label oclinename1;
-        @FXML
-        private Label oclinename2;
-        @FXML
-        private Label ocstartstn;
-        @FXML
-        private Label ocmiddlestn2;
-        @FXML
-        private Label ocstops;
-        @FXML
-        private Label ocstops2;
-        @FXML
-        private Label ocmiddlestn;
-        @FXML
-        private Label ocendstn;
-        @FXML
-        private Line ocline1;
-        @FXML
-        private Line ocline2;
-        /**
-         * Next few is for two changes labels and lines. tc = two changes
-         */
-        @FXML
-        private Label tclinename1;
-        @FXML
-        private Label twoclinename2;
-        @FXML
-        private Label tcstart;
-        @FXML
-        private Label tcend;
-        @FXML
-        private Label tcstop1;
-        @FXML
-        private Label tcstop2;
-        @FXML
-        private Label tcmiddlestn1;
-        @FXML
-        private Label tcmiddlestn2;
-        @FXML
-        private Label tclinename3;
-        @FXML
-        private Line tcline1;
-        @FXML
-        private Line tcline2;
-        @FXML
-        private QuadCurve tcline3;
 
+        @FXML
+        private Label command;
+
+
+        Controller controller = new Controller();
 
         String[] lines = {"Red", "RedA", "RedB", "Blue", "Orange", "Mattapan",
-                "Green", "GreenA", "GreenB", "GreenC", "GreenD", "GreenE"};
-
+                "Green", "GreenB", "GreenC", "GreenD", "GreenE"};
 
         /**
          *
@@ -145,6 +81,9 @@ public class GUI_eventlisteners implements Initializable {
          */
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
+                fromtxt.setText(Start);
+                totxt.setText(End);
+
 
                 fromLineDropDown.setPromptText("Choose Line");
                 fromLineDropDown.getItems().addAll(lines);
@@ -164,8 +103,15 @@ public class GUI_eventlisteners implements Initializable {
                 try {
                 Start = fromtxt.getText();
                 End = totxt.getText();
-                setTwo_change(Start, "Charring Cross", "Haymarket", End, "Red", "Blue", "Yellow", 4, 6);
-                //submitbtn.addActionlistener(event);
+
+                Boolean[] errorCheck = controller.errorCheck(Start,End);
+
+                if (!errorCheck[0] || !errorCheck[1]){
+                        command.setText("Please enter valid stations.");
+                } else{
+                        finalRoute(Start, End);
+                        command.setText("");
+                }
 
                 } catch (Exception e) {
                 System.out.println(e);
@@ -225,87 +171,6 @@ public class GUI_eventlisteners implements Initializable {
                 }
                 }
 
-
-        /**
-         * Will Display A line if theres no changes. Probs needs some adjusting and could be removed if no time. For the colourful route thingy
-         *
-         * @param start
-         * @param end
-         * @param line
-         * @param stops
-         */
-        public void setNo_change(String start, String end, Array line, int stops) {
-                (no_change).setVisible(true);
-                (one_change).setVisible(false);
-                (two_change).setVisible(false);
-                nclinename.setText(line + " Line");
-                ncstartstn.setText(start);
-                ncstops.setText(stops + " stops");
-                ncendstn.setText(end);
-                ncline.setStroke(Color.RED);
-                // find find start to end
-                }
-
-        /**
-         * Is meant to display the route with one change. Probs needs some adjusting and could be removed if no time. For the colourful route thingy
-         *
-         * @param start
-         * @param middle
-         * @param end
-         * @param line
-         * @param line2
-         * @param stops
-         * @param stops2
-         */
-        public void setOne_change(String start, String middle, String end, String line, String line2, int stops, int stops2) {
-                (no_change).setVisible(false);
-                (one_change).setVisible(true);
-                (two_change).setVisible(false);
-                oclinename1.setText(line + " Line");
-                oclinename2.setText(line2 + " Line");
-                ocstartstn.setText(start);
-                ocmiddlestn2.setText(middle);
-                ocmiddlestn.setText(middle);
-                ocendstn.setText(end);
-                ocstops.setText(stops + " stops");
-                ocstops2.setText(stops2 + " stops");
-                ocline1.setStroke(Color.RED);
-                ocline2.setStroke(Color.BLUE);
-                // find find start to end
-                }
-
-        /**
-         * Is meant to display route with 2 changes. Probs needs some adjusting and could be removed if no time. For the colourful route thingy
-         *
-         * @param start
-         * @param middle
-         * @param middle2
-         * @param end
-         * @param line
-         * @param line2
-         * @param line3
-         * @param stops
-         * @param stops2
-         */
-        public void setTwo_change(String start, String middle, String middle2, String end, String line, String line2, String line3, int stops, int stops2) {
-                (no_change).setVisible(false);
-                (one_change).setVisible(false);
-                (two_change).setVisible(true);
-                tclinename1.setText(line + " Line");
-                twoclinename2.setText(line2 + " Line");
-                tclinename3.setText(line3 + " Line");
-                tcstart.setText(start);
-                tcend.setText(end);
-                tcmiddlestn1.setText(middle);
-                tcmiddlestn2.setText(middle2);
-                tcstop1.setText(stops + " stops");
-                tcstop2.setText(stops2 + " stops");
-                tcline1.setStroke(Color.RED);
-                tcline2.setStroke(Color.BLUE);
-                tcline3.setStroke(Color.GREEN);
-                // find find start to end
-                }
-
         /**
          * Sets up the from list view depending on corresponding combo box choice. Needs a function to get chosen line's stations
          * from Another class. Set up atm to test dummy data
@@ -316,8 +181,9 @@ public class GUI_eventlisteners implements Initializable {
                 String linename = fromLineDropDown.getValue();
                 //List<String> firstLine = getStations(linename); Placeholder, function to get stations for first chosen line. Links with another class. Uses 1 string
 
-                if (linename.equals("GreenA")) {
-                        String[] stn = {"a", "b", "c"};
+               // List<String> firstLine = line.
+                if (linename.equals("GreenB")) {
+                        String[] stn = {"Harvard", "MIT", "SummitAvenue"};
 
                         /**
                          * Just below this is useful and converts line list to observable list then populates the Listview. If statement not needed
@@ -328,8 +194,8 @@ public class GUI_eventlisteners implements Initializable {
                         fromListView.getItems().addAll(observableList);
                 }
                 //for testing no needed
-                if (linename.equals("GreenB")) {
-                        String[] stn = {"e", "r", "x"};
+                if (linename.equals("Mattapan")) {
+                        String[] stn = {"CapenStreet", "Bellgrove", "Parkhill"};
                         List<String> stations = Arrays.asList(stn);
                         ObservableList<String> observableList = FXCollections.observableList(stations);
                         fromListView.getItems().clear();
@@ -345,10 +211,11 @@ public class GUI_eventlisteners implements Initializable {
          */
         public void getToLine(ActionEvent event){
                 String linename = toLineDropdown.getValue();
-                //List<String> secondLine = getStations(linename); Placeholder, function to get stations for first chosen line. Links with another class. Uses 1 string
+              //  List<String> secondLine = Controller.lineFromStr(linename); Placeholder, function to get stations for first chosen line. Links with another class. Uses 1 string
+                //line.
 
-                if (linename.equals("GreenA")) {
-                        String[] stn = {"a", "b", "c"};
+                if (linename.equals("GreenB")) {
+                        String[] stn = {"Harvard", "MIT", "SummitAvenue"};
 
                         /**
                          * Just below this is useful and converts line list to observable list then populates the Listview. If statement not needed
@@ -360,8 +227,8 @@ public class GUI_eventlisteners implements Initializable {
                 }
 
                 //for testing no needed
-                if (linename.equals("GreenB")) {
-                        String[] stn = {"e", "r", "x"};
+                if (linename.equals("Mattapan")) {
+                        String[] stn = {"CapenStreet", "Bellgrove", "Parkhill"};
                         List<String> stations = Arrays.asList(stn);
                         ObservableList<String> stnsObs = FXCollections.observableList(stations);
                         toListView.getItems().clear();
@@ -376,14 +243,77 @@ public class GUI_eventlisteners implements Initializable {
          * @param from
          */
         public void finalRoute(String to, String from){
-                //List<String> path = function to find path. Links with another class. Uses 2 strings
-                String[] stn = {to, "p", from}; // For dummy test
+              //  List<String> path = getPathList(to, from);
+                String[] stn = {"|GB Harvard", "|GB MIT", "|GB > |B SummitAvenue", "|B Airport", "|B Oakgrove", "|B Hillhead", "|B > |M Bellgrove", "|M Charles/MGH"}; // For dummy test
                 List<String> path = Arrays.asList(stn);
                 ObservableList<String> pathObs = FXCollections.observableList(path);
                 resultingPath.getItems().clear();
+                /**
+                for (int i = 0; i < pathObs.size(); i++){
+                        String[] lines = stations[1];
+                        if(lines.length == 1){
+                                String line = lines[0];
+                        } else {
+                                String line = lines[0];
+                                String line2 = lines[1];
+                        }
+
+                        String station = pathObs.get(i);
+                        String prevLine;
+                }
+                 */
                 resultingPath.getItems().addAll(pathObs);
 
         }
+
+        public boolean letterCheck(String name) {
+                return name.matches("[^A-Za-z0-9/.']");
+        }
+
+        public String lineShort(String line){
+                String shrtLine = "";
+                switch(line) {
+                        case "Red" :
+                                shrtLine = "|R";
+                                break;
+                        case "RedA" :
+                                shrtLine = "|RA";
+                                break;
+
+                        case "RedB" :
+                                shrtLine = "|RB";
+                                break;
+                        case "Blue" :
+                                shrtLine = "|B";
+                                break;
+                        case "Orange" :
+                                shrtLine = "|O";
+                                break;
+                        case "Mattapan" :
+                                shrtLine = "|M";
+                                break;
+                        case "Green" :
+                                shrtLine = "|G";
+                                break;
+                        case "GreenB" :
+                                shrtLine = "|GB";
+                                break;
+                        case "GreenC" :
+                                shrtLine = "|GC";
+                                break;
+                        case "GreenD" :
+                                shrtLine = "|GD";
+                                break;
+                        case "GreenE" :
+                                shrtLine = "|GE";
+                                break;
+                        default :
+                                System.out.println("Line wrong syntax");
+                }
+                return shrtLine;
+        }
+        
+
 
 
 }

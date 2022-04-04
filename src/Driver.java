@@ -6,9 +6,11 @@ import javafx.event.ActionEvent;
 public class Driver {
 
 
-/*
+
 
     public static void main(String[] args) {
+        Controller controller = new Controller();
+        controller.run();
         new Thread() {
             @Override
             public void run() {
@@ -20,7 +22,7 @@ public class Driver {
     }
 
 
- */
+
 
 
 }
