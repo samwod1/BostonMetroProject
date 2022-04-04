@@ -5,11 +5,19 @@ import java.util.List;
 
 public class Line {
     String name;
-    ArrayList stations;
+    ArrayList<Station> stations;
 
     public Line(String name, ArrayList stations) {
         this.name = name;
         this.stations = stations;
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "name='" + name + '\'' +
+                ", stations=" + stations +
+                '}';
     }
 
     public void addStation(Station station){ this.stations.add(station); }

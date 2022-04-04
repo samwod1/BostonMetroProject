@@ -58,6 +58,12 @@ public class NetworkConstructor {
                 }
             }
         }
+        stnlines=lines;
+        //System.out.println("---------------");
+        //for (int i = 0; i < stnlines.size(); i++) {
+        //    System.out.println(stnlines.get(i).toString());
+        //}
+        //System.out.println("---------------");
         //printStations(stations);
         return stations;
     }
