@@ -79,7 +79,7 @@ public class GraphImp extends GraphADT {
     {
        HashMap hash = constructHash(root, target);
         System.out.println(hash);
-       ArrayList<Integer> path = constructPath(hash);
+       ArrayList<Integer> path = constructPath(hash, target);
 
        return path;
     }
@@ -93,87 +93,152 @@ public class GraphImp extends GraphADT {
         }
     }
 
-    public ArrayList<Integer> constructPath(HashMap<Integer, Integer> map){
-        Integer root = null;
-        ArrayList<Integer> order = new ArrayList<>();
-        for (Map.Entry<Integer, Integer> set : map.entrySet()) {
-            Integer ancestor = set.getKey();
-            if (ancestor == null) {
-                root = set.getValue();
-            }
+//    public ArrayList<Integer> constructPath(HashMap<Integer, Integer> map){
+//        Integer root = null;
+//        ArrayList<Integer> order = new ArrayList<>();
+//        for (Map.Entry<Integer, Integer> set : map.entrySet()) {
+//            Integer ancestor = set.getKey();
+//            if (ancestor == null) {
+//                root = set.getValue();
+//            }
+//
+//        }
+//        order.add(root);
+//
+//        //need to find a way of getting the order from the root,
+//        // may need to change the structure of hashmap in bfs
+//        for (int i = 0; i < map.size(); i++) {
+//            Integer child = map.get(root);
+//            order.add(child);
+//            root = child;
+//        }
+//
+//        return order;
+//
+//    }
 
-        }
-        order.add(root);
+//    for (Map.Entry<Integer, Integer> set : map.entrySet()) {
+//            Integer ancestor = map.get(set.getKey());
+//            if (ancestor == null) {
+//                root = set.getKey();
+//            }
+//
+//        }
+//        order.add(root);
 
         //need to find a way of getting the order from the root,
         // may need to change the structure of hashmap in bfs
+//        for (int i = 0; i < map.size(); i++) {
+//            Integer child = map.get(root);
+//            order.add(child);
+//            root = child;
+//        }
+
+
+    public ArrayList<Integer> constructPath(HashMap<Integer, Integer> map, int target){
+//        Integer root = null;
+        ArrayList<Integer> order = new ArrayList<>();
+
+
+        Integer node = target;
         for (int i = 0; i < map.size(); i++) {
-            Integer child = map.get(root);
-            order.add(child);
-            root = child;
+            Integer ancestor = map.get(node);
+            order.add(0, node);
+            node = ancestor;
         }
 
         return order;
 
+
     }
 
-//    public HashMap constructHash(int root, int target) {
-//
-//    }
-
-    public HashMap constructHash(int root, int target){
-
+    public HashMap<Integer, Integer> constructHash(int root, int target) {
         ArrayList<Integer> visited = new ArrayList<>();
-        LinkedList<Integer> queue = new LinkedList<Integer>();
+        LinkedList<Integer> agenda = new LinkedList<>();
         HashMap<Integer, Integer> hash = new HashMap<Integer, Integer>();
+        boolean found = false;
 
-        boolean containsRoot = false;
-        boolean containsTarget = false;
-        for(int i=0; i < adjList.size(); i++){
-            if(adjList.get(i).contains(root)){
-                containsRoot = true;
-            }
-            if(adjList.get(i).contains(target)){
-                containsTarget = true;
-            }
-        }
+        agenda.add(root);
+        System.out.println(agenda);
+        hash.put(root, null);
+        visited.add(root);
 
-        if(!containsRoot || !containsTarget){
-            System.out.println("Please enter a valid target");
-            return hash;
-        }
+        while(!found) {
+            int parent = agenda.poll();
 
-        queue.add(root);
-        hash.put(null, root);
-        while(queue.size() != 0){
-            //pool is like pop but doesn't throw error when empty, just returns null
-            int parent = queue.poll();
-
-            if(parent == target)
+            if (parent == target) {
+                System.out.println(parent);
                 return hash;
+            } else {
 
-
-            Iterator<Integer> iterator = adjList.get(parent-1).listIterator();
-            while (iterator.hasNext()){
-
-
-                int num = iterator.next();
-                //System.out.println("iterator.next: " + num);
-                if(!visited.contains(num)){
-                    queue.add(num);
-                    System.out.println(queue);
-                    hash.put(parent,num);
-
-                    if(num == target)
-                        return hash;
+                Iterator<Integer> iterator = adjList.get(parent-1).listIterator();
+                while (iterator.hasNext()){
+                    int num = iterator.next();
+                    agenda.add(num);
+                    System.out.println(agenda);
+                    if(!visited.contains(num))
+                        hash.put(num,parent);
+                        visited.add(num);
                 }
 
             }
-            visited.add(parent);
         }
 
         return hash;
     }
+
+//    public HashMap constructHash(int root, int target){
+//
+//        ArrayList<Integer> visited = new ArrayList<>();
+//        LinkedList<Integer> queue = new LinkedList<Integer>();
+//        HashMap<Integer, Integer> hash = new HashMap<Integer, Integer>();
+//
+//        boolean containsRoot = false;
+//        boolean containsTarget = false;
+//        for(int i=0; i < adjList.size(); i++){
+//            if(adjList.get(i).contains(root)){
+//                containsRoot = true;
+//            }
+//            if(adjList.get(i).contains(target)){
+//                containsTarget = true;
+//            }
+//        }
+//
+//        if(!containsRoot || !containsTarget){
+//            System.out.println("Please enter a valid target");
+//            return hash;
+//        }
+//
+//        queue.add(root);
+//        System.out.println(queue);
+//        hash.put(null, root);
+//        while(true){
+//            //pool is like pop but doesn't throw error when empty, just returns null
+//            int parent = queue.poll();
+//
+////            if(parent == target)
+////                return hash;
+//
+//
+//            Iterator<Integer> iterator = adjList.get(parent-1).listIterator();
+//            while (iterator.hasNext()){
+//
+//
+//                int num = iterator.next();
+//                //System.out.println("iterator.next: " + num);
+//                if(!visited.contains(num)){
+//                    queue.add(num);
+//                    System.out.println(queue);
+//                    hash.put(parent,num);
+//                    if(num == target)
+//                        return hash;
+//                }
+//
+//            }
+//            visited.add(parent);
+//        }
+//
+//    }
 
     //create construct graph method which takes in input and crates adjacency list.
     //create other methods which add other functionality

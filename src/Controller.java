@@ -20,7 +20,7 @@ public class Controller {
         Station stn4 = nwc.stnfromStr("OakGrove");
 //        System.out.println(stn4);
 
-        System.out.println(route.makeRoute(stn3,stn4));
+        System.out.println(route.makeRoute(stn4,stn3));
     }
 
 }
