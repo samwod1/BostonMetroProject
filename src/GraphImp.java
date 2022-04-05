@@ -137,19 +137,21 @@ public class GraphImp extends GraphADT {
 
     public ArrayList<Integer> constructPath(HashMap<Integer, Integer> map, int target){
 //        Integer root = null;
+        boolean found = false;
         ArrayList<Integer> order = new ArrayList<>();
 
 
         Integer node = target;
-        for (int i = 0; i < map.size(); i++) {
+        while (!found) {
             Integer ancestor = map.get(node);
             order.add(0, node);
+            if (ancestor == null) {
+                found = true;
+            }
             node = ancestor;
         }
 
         return order;
-
-
     }
 
     public HashMap<Integer, Integer> constructHash(int root, int target) {
@@ -159,7 +161,7 @@ public class GraphImp extends GraphADT {
         boolean found = false;
 
         agenda.add(root);
-        System.out.println(agenda);
+//        System.out.println(agenda);
         hash.put(root, null);
         visited.add(root);
 
@@ -167,7 +169,7 @@ public class GraphImp extends GraphADT {
             int parent = agenda.poll();
 
             if (parent == target) {
-                System.out.println(parent);
+//                System.out.println(parent);
                 return hash;
             } else {
 
@@ -175,7 +177,7 @@ public class GraphImp extends GraphADT {
                 while (iterator.hasNext()){
                     int num = iterator.next();
                     agenda.add(num);
-                    System.out.println(agenda);
+//                    System.out.println(agenda);
                     if(!visited.contains(num))
                         hash.put(num,parent);
                         visited.add(num);

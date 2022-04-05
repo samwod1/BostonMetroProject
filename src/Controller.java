@@ -14,7 +14,7 @@ public class Controller {
 
 //        System.out.println(route.makeRoute(stn2,stn1));
 
-        Station stn3 = nwc.stnfromStr("Wellington");
+        Station stn3 = nwc.stnfromStr("Aquarium");
 //        System.out.println(stn3);
 
         Station stn4 = nwc.stnfromStr("OakGrove");
