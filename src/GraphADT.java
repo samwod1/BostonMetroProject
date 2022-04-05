@@ -81,9 +81,9 @@ public abstract class GraphADT {
     //and returns path
     public abstract ArrayList<Integer> BFS(int root, int target);
 
-    public abstract ArrayList<Integer> constructPath(HashMap<Integer, Integer> map);
+    public abstract ArrayList<Integer> constructPath(HashMap<Integer, Integer> map, int target);
 
-    public abstract HashMap constructHash(int root, int target);
+    public abstract HashMap<Integer, Integer> constructHash(int root, int target);
 
     public abstract void printGraph();
     
