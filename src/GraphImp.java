@@ -78,7 +78,7 @@ public class GraphImp extends GraphADT {
     public ArrayList<Integer> BFS(int root, int target)
     {
        HashMap hash = constructHash(root, target);
-        System.out.println(hash);
+        //System.out.println(hash);
        ArrayList<Integer> path = constructPath(hash, target);
 
        return path;
@@ -93,53 +93,10 @@ public class GraphImp extends GraphADT {
         }
     }
 
-//    public ArrayList<Integer> constructPath(HashMap<Integer, Integer> map){
-//        Integer root = null;
-//        ArrayList<Integer> order = new ArrayList<>();
-//        for (Map.Entry<Integer, Integer> set : map.entrySet()) {
-//            Integer ancestor = set.getKey();
-//            if (ancestor == null) {
-//                root = set.getValue();
-//            }
-//
-//        }
-//        order.add(root);
-//
-//        //need to find a way of getting the order from the root,
-//        // may need to change the structure of hashmap in bfs
-//        for (int i = 0; i < map.size(); i++) {
-//            Integer child = map.get(root);
-//            order.add(child);
-//            root = child;
-//        }
-//
-//        return order;
-//
-//    }
-
-//    for (Map.Entry<Integer, Integer> set : map.entrySet()) {
-//            Integer ancestor = map.get(set.getKey());
-//            if (ancestor == null) {
-//                root = set.getKey();
-//            }
-//
-//        }
-//        order.add(root);
-
-        //need to find a way of getting the order from the root,
-        // may need to change the structure of hashmap in bfs
-//        for (int i = 0; i < map.size(); i++) {
-//            Integer child = map.get(root);
-//            order.add(child);
-//            root = child;
-//        }
-
-
     public ArrayList<Integer> constructPath(HashMap<Integer, Integer> map, int target){
-//        Integer root = null;
+
         boolean found = false;
         ArrayList<Integer> order = new ArrayList<>();
-
 
         Integer node = target;
         while (!found) {
@@ -150,7 +107,6 @@ public class GraphImp extends GraphADT {
             }
             node = ancestor;
         }
-
         return order;
     }
 
@@ -251,48 +207,4 @@ public class GraphImp extends GraphADT {
 
     }
 
-    public static void main(String[] args) {
-
-        ArrayList<ArrayList<Integer>> aList = new ArrayList<ArrayList<Integer>>();
-
-        ArrayList<Integer> a1 = new ArrayList<Integer>();
-        a1.add(1);
-        a1.add(2);
-        aList.add(a1);
-
-        ArrayList<Integer> a2 = new ArrayList<Integer>();
-        a2.add(1);
-        a2.add(3);
-        aList.add(a2);
-
-        ArrayList<Integer> a3 = new ArrayList<Integer>();
-        a3.add(1);
-        a3.add(4);
-        aList.add(a3);
-
-        ArrayList<Integer> a4 = new ArrayList<Integer>();
-        a4.add(1);
-        a4.add(5);
-        aList.add(a4);
-
-        ArrayList<Integer> a5 = new ArrayList<Integer>();
-        a5.add(5);
-        a5.add(6);
-        aList.add(a5);
-
-        ArrayList<Integer> a6 = new ArrayList<Integer>();
-        a6.add(5);
-        a6.add(7);
-        aList.add(a6);
-
-        ArrayList<Integer> a7 = new ArrayList<Integer>();
-        a7.add(7);
-        a7.add(8);
-        aList.add(a7);
-
-
-        GraphImp graph = new GraphImp(aList);
-        //System.out.print(graph);
-        System.out.println(graph.BFS(1,8));
-    }
 }

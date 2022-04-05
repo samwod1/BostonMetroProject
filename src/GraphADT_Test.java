@@ -1,6 +1,8 @@
 import java.lang.reflect.Array;
 import java.util.*;
 
+//DESTROY once tests have been written from this code
+
 public class GraphADT_Test {
 
     public void test() {

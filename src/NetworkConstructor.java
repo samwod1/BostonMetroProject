@@ -25,7 +25,7 @@ public class NetworkConstructor {
                 l.add(temp.get(j));
                 if (!lineNames.contains(temp.get(j))) {
                     lineNames.add(temp.get(j));
-                    System.out.println("|||||" + lineNames);
+//                    System.out.println("|||||" + lineNames);
                 }
                 for (int k = 1; k <= 2; k++) {
                     if (connections.contains(temp.get(j+k)) == false){
@@ -46,7 +46,7 @@ public class NetworkConstructor {
     public static ArrayList<Line> createLines(){
         ArrayList<Line> lines = new ArrayList<>();
 
-        System.out.println("Innest " + lineNames);
+        //System.out.println("Innest " + lineNames);
         for (int i = 0; i < lineNames.size(); i++) {
             ArrayList<Station> lineStns = new ArrayList<>();
             for (int j = 0; j < stations.size(); j++) {
@@ -54,10 +54,10 @@ public class NetworkConstructor {
                 for (int k = 0; k < arrLines.size(); k++) {
                     if (lineNames.get(i).equals(arrLines.get(k))) {
                         lineStns.add(stations.get(j));
-                        System.out.println("Innest");
+//                        System.out.println("Innest");
                     }
                 }
-                System.out.println("Innest");
+//                System.out.println("Innest");
             }
             Line l = new Line(lineNames.get(i), lineStns);
             lines.add(l);
@@ -125,7 +125,7 @@ public class NetworkConstructor {
                 connections.add(conn);
             }
         }
-        System.out.println(connections);
+//        System.out.println(connections);
         return connections;
     }
 
@@ -144,7 +144,7 @@ public class NetworkConstructor {
                 connections.add(conn);
             }
         }
-        System.out.println(connections);
+//        System.out.println(connections);
         return connections;
     }
 

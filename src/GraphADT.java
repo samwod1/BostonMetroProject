@@ -42,23 +42,23 @@ public abstract class GraphADT {
         }
 
         this.numNodes = maxNodes;
-        System.out.println("maxNodes: " + maxNodes);
+        //System.out.println("maxNodes: " + maxNodes);
         //intiliases adjList
         for(int i = 0; i < maxNodes; i++){
             ArrayList<Integer> temp = new ArrayList<Integer>();
             adjList.add(temp);
         }
 
-        System.out.println("adjList size: " + adjList.size());
+        //System.out.println("adjList size: " + adjList.size());
 
         for(int i = 0; i < edges.size(); i++){
             adjList.get(edges.get(i).get(1) - 1).add(edges.get(i).get(0));
 //            adjList.get(edges.get(i).get(0) - 1).add(edges.get(i).get(1));
         }
 
-        for(int i = 0; i < adjList.size(); i++){
-            System.out.println("Conns for " + (i+1) + ":" + adjList.get(i));
-        }
+//        for(int i = 0; i < adjList.size(); i++){
+//            System.out.println("Conns for " + (i+1) + ":" + adjList.get(i));
+//        }
 
     }
 
