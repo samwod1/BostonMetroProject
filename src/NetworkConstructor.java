@@ -10,10 +10,11 @@ public class NetworkConstructor {
     static ArrayList<Station> stations = createStations();
     static ArrayList<Line> lines = createLines();
     static ArrayList<String> lineNames = new ArrayList<>();
+    static String file = "src\\bostonmetro.txt";
 
 
     public static ArrayList<Station> createStations(){
-        ArrayList<ArrayList<String>> textLines = InputReader.readFile();
+        ArrayList<ArrayList<String>> textLines = InputReader.readFile("src\\bostonmetro.txt");
         lineNames = new ArrayList<String>();
         ArrayList<Station> stations = new ArrayList<>();
 
