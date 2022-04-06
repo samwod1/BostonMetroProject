@@ -148,6 +148,16 @@ public class NetworkConstructor {
         return connections;
     }
 
+    public static Station getStationByName(String name){
+        for (int i = 0; i < stations.size(); i++) {
+            if (stations.get(i).getName()==name) {
+                return stations.get(i);
+            }
+        }
+        System.out.println(name);
+        return null;
+    }
+
     public static void printStations(List<Station> stations){
         for (int i = 0; i < stations.size(); i++) {
             System.out.println(stations.get(i).toString());

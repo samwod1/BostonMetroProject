@@ -117,13 +117,15 @@ public class GUI_eventlisteners implements Initializable {
                         ObservableList<String> toObs;
                         fromObs = fromListView.getSelectionModel().getSelectedItems();
                         toObs = toListView.getSelectionModel().getSelectedItems();
-                        if (!fromObs.isEmpty() && !toObs.isEmpty()) {
+                        String from = fromObs.get(0);
+                        String to = toObs.get(0);
+                        if (!(null == from) && !(null == to)) {
 
-                                String from = "";
-                                String to = "";
 
-                                from += fromObs.toString().substring(1, 3 * fromObs.size() - 1).replaceAll(", ", "");
-                                to += toObs.toString().substring(1, 3 * toObs.size() - 1).replaceAll(", ", "");
+
+                           //    from += fromObs.toString().substring(1, 3 * fromObs.size() - 1).replaceAll("[^a-zA-Z]", "");
+                            //    to += toObs.toString().substring(1, 3 * toObs.size() - 1).replaceAll("[^a-zA-Z]", "");
+
 
                                 Start = from;
                                 End = to;
@@ -191,25 +193,31 @@ public class GUI_eventlisteners implements Initializable {
          * @param from
          */
         public void finalRoute(String to, String from){
-              //  List<String> path = getPathList(to, from);
-                String[] stn = {"|GB Harvard", "|GB MIT", "|GB > |B SummitAvenue", "|B Airport", "|B Oakgrove", "|B Hillhead", "|B > |M Bellgrove", "|M Charles/MGH"}; // For dummy test
-                List<String> path = Arrays.asList(stn);
-                ObservableList<String> pathObs = FXCollections.observableList(path);
-                resultingPath.getItems().clear();
-                /**
-                for (int i = 0; i < pathObs.size(); i++){
-                        String[] lines = stations[1];
-                        if(lines.length == 1){
-                                String line = lines[0];
-                        } else {
-                                String line = lines[0];
-                                String line2 = lines[1];
-                        }
+                List<String[]> pathStns = controller.getLineRoute(to, from);
+                List<String> pathCombine = new ArrayList<>();
+                String line = "";
+                for(int i = 0; i < pathStns.size(); i++){
 
-                        String station = pathObs.get(i);
-                        String prevLine;
+                 //       if(pathStns.get(i)[2] == null) {
+                        if (lineShort(pathStns.get(i)[1])!="") {
+                                line = lineShort(pathStns.get(i)[1]);
+                        }
+                        String station = pathStns.get(i)[0];
+                        if(i+1<pathStns.size()) {
+                                if (pathStns.get(i)[1].equals(pathStns.get(i + 1)[1])) {
+                                        station = line + " " + station;
+                                } else {
+                                        String lineChange = lineShort(pathStns.get(i + 1)[1]);
+                                        station = line + " > " + lineChange + " " + station;
+                                }
+                        } else if (pathStns.size()-1 == i){
+                                station = line + " " + station;
+                        }
+                        pathCombine.add(station);
+
                 }
-                 */
+                ObservableList<String> pathObs = FXCollections.observableList(pathCombine);
+                resultingPath.getItems().clear();
                 resultingPath.getItems().addAll(pathObs);
 
         }

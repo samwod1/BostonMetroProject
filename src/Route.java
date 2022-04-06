@@ -16,7 +16,7 @@ public class Route {
 
 
     public ArrayList<Station> makeRoute(Station n1, Station n2) {
-
+        String station1 = n1.getName();
         Integer n1int = n1.getNumberAsint();
         Integer n2int = n2.getNumberAsint();
 
