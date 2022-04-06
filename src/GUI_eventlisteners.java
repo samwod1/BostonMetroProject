@@ -212,6 +212,7 @@ public class GUI_eventlisteners implements Initializable {
                                 }
                         } else if (pathStns.size()-1 == i){
                                 station = line + " " + station;
+                                System.out.println("efrdsf");
                         }
                         pathCombine.add(station);
 
@@ -228,6 +229,7 @@ public class GUI_eventlisteners implements Initializable {
 
         public String lineShort(String line){
                 String shrtLine = "";
+                System.out.println(line);
                 switch(line) {
                         case "Red" :
                                 shrtLine = "|R";
