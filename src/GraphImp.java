@@ -57,7 +57,7 @@ public class GraphImp extends GraphADT {
 
     public ArrayList<Integer> successors(int node)
     {
-        ArrayList<Integer> successorNodes = new ArrayList<Integer>();
+        ArrayList<Integer> successorNodes = new ArrayList<>();
         for (int i=0; i<nNodes(); i++)
             if (adjList.get(node).contains(i))
                 successorNodes.add(i);
@@ -113,15 +113,14 @@ public class GraphImp extends GraphADT {
     public HashMap<Integer, Integer> constructHash(int root, int target) {
         ArrayList<Integer> visited = new ArrayList<>();
         LinkedList<Integer> agenda = new LinkedList<>();
-        HashMap<Integer, Integer> hash = new HashMap<Integer, Integer>();
-        boolean found = false;
+        HashMap<Integer, Integer> hash = new HashMap<>();
 
         agenda.add(root);
 //        System.out.println(agenda);
         hash.put(root, null);
         visited.add(root);
 
-        while(!found) {
+        while(true) {
             int parent = agenda.poll();
 
             if (parent == target) {
@@ -129,20 +128,17 @@ public class GraphImp extends GraphADT {
                 return hash;
             } else {
 
-                Iterator<Integer> iterator = adjList.get(parent-1).listIterator();
-                while (iterator.hasNext()){
-                    int num = iterator.next();
+                for (int num : adjList.get(parent - 1)) {
                     agenda.add(num);
 //                    System.out.println(agenda);
-                    if(!visited.contains(num))
-                        hash.put(num,parent);
+                    if (!visited.contains(num))
+                        hash.put(num, parent);
                         visited.add(num);
                 }
 
             }
         }
 
-        return hash;
     }
 
 //    public HashMap constructHash(int root, int target){
