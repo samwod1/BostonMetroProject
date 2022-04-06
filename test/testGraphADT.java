@@ -14,34 +14,25 @@ public class testGraphADT {
 
         ArrayList<ArrayList<Integer>> aList = new ArrayList<ArrayList<Integer>>();
 
-        ArrayList<Integer> a01 = new ArrayList<>();
-        a01.add(0);
-        a01.add(1);
-        aList.add(a01);
-
-        ArrayList<Integer> a10 = new ArrayList<Integer>();
-        a10.add(1);
-        a10.add(0);
-        aList.add(a10);
 
         ArrayList<Integer> a02 = new ArrayList<Integer>();
-        a02.add(0);
+        a02.add(1);
         a02.add(2);
         aList.add(a02);
 
         ArrayList<Integer> a20 = new ArrayList<Integer>();
         a20.add(2);
-        a20.add(0);
+        a20.add(1);
         aList.add(a20);
 
         ArrayList<Integer> a04 = new ArrayList<Integer>();
-        a04.add(0);
+        a04.add(1);
         a04.add(4);
         aList.add(a04);
 
         ArrayList<Integer> a40 = new ArrayList<Integer>();
         a40.add(4);
-        a40.add(0);
+        a40.add(1);
         aList.add(a40);
 
         ArrayList<Integer> a45 = new ArrayList<Integer>();
@@ -80,26 +71,6 @@ public class testGraphADT {
 
     public ArrayList<ArrayList<Integer>> constructComplicatedGraph(){
         ArrayList<ArrayList<Integer>> aList = new ArrayList<ArrayList<Integer>>();
-
-        ArrayList<Integer> a01 = new ArrayList<>();
-        a01.add(0);
-        a01.add(1);
-        aList.add(a01);
-
-        ArrayList<Integer> a10 = new ArrayList<Integer>();
-        a10.add(1);
-        a10.add(0);
-        aList.add(a10);
-
-        ArrayList<Integer> a03 = new ArrayList<Integer>();
-        a03.add(0);
-        a03.add(3);
-        aList.add(a03);
-
-        ArrayList<Integer> a30 = new ArrayList<Integer>();
-        a30.add(3);
-        a30.add(0);
-        aList.add(a30);
 
         ArrayList<Integer> a31 = new ArrayList<Integer>();
         a31.add(3);
@@ -204,11 +175,11 @@ public class testGraphADT {
 
         ArrayList<Integer> a70 = new ArrayList<Integer>();
         a70.add(7);
-        a70.add(0);
+        a70.add(1);
         aList.add(a70);
 
         ArrayList<Integer> a07 = new ArrayList<Integer>();
-        a07.add(0);
+        a07.add(1);
         a07.add(7);
         aList.add(a07);
 
