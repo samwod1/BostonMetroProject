@@ -78,7 +78,7 @@ public class GraphImp extends GraphADT {
     public ArrayList<Integer> BFS(int root, int target)
     {
        HashMap hash = constructHash(root, target);
-        System.out.println(hash);
+       // System.out.println(hash);
        ArrayList<Integer> path = constructPath(hash, target);
 
        return path;
@@ -159,7 +159,7 @@ public class GraphImp extends GraphADT {
         boolean found = false;
 
         agenda.add(root);
-        System.out.println(agenda);
+       // System.out.println(agenda);
         hash.put(root, null);
         visited.add(root);
 
@@ -167,7 +167,7 @@ public class GraphImp extends GraphADT {
             int parent = agenda.poll();
 
             if (parent == target) {
-                System.out.println(parent);
+               // System.out.println(parent);
                 return hash;
             } else {
 
@@ -175,7 +175,7 @@ public class GraphImp extends GraphADT {
                 while (iterator.hasNext()){
                     int num = iterator.next();
                     agenda.add(num);
-                    System.out.println(agenda);
+                   // System.out.println(agenda);
                     if(!visited.contains(num))
                         hash.put(num,parent);
                         visited.add(num);
@@ -291,6 +291,6 @@ public class GraphImp extends GraphADT {
 
         GraphImp graph = new GraphImp(aList);
         //System.out.print(graph);
-        System.out.println(graph.BFS(1,8));
+        System.out.println(graph.BFS(1,7));
     }
 }

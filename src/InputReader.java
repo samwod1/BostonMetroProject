@@ -11,10 +11,9 @@ import java.util.Set;
 
 public class InputReader {
 
-    public static final String fileLocation = "src\\bostonmetro.txt";
     public static final String divider = " ";
 
-    public static ArrayList readFile() {
+    public static ArrayList readFile(String fileLocation) {
         ArrayList<ArrayList<String>> textLines = new ArrayList();
         try {
             File inputFile = new File(fileLocation);

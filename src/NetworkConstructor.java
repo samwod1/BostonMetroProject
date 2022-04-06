@@ -9,7 +9,7 @@ public class NetworkConstructor {
 
 
     public static ArrayList<Station> createStations(){
-        ArrayList<ArrayList<String>> textLines = InputReader.readFile();
+        ArrayList<ArrayList<String>> textLines = InputReader.readFile("src\\bostonmetro.txt");
         ArrayList<String> lineNames = new ArrayList<>();
         ArrayList<Station> stations = new ArrayList<>();
         ArrayList<Line> lines = new ArrayList<>();
