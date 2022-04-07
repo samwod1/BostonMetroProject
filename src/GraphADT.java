@@ -6,29 +6,10 @@ public abstract class GraphADT {
 
     List<List<Integer>> adjList = new ArrayList<>();
     public int numNodes;
+    ArrayList<ArrayList<Integer>> edges;
 
-    ArrayList vertices = new ArrayList();
-    // changed edges inner arraylist to be of type Integer
-    ArrayList<ArrayList<Integer>> edges = new ArrayList();
-    // temp removing vertices
 
-    /*
-    public GraphADT( ArrayList<ArrayList<Integer>> edges){
-
-        this.edges = edges;
-        numNodes = edges.size();
-
-        for (int i = 0; i < numNodes; i++)
-            adjList.add(i, new ArrayList<>());
-
-        for(ArrayList<Integer> e : edges){
-            //gets source and adds new adjancent node
-            adjList.get(e.get(0)).add(e.get(1));
-        }
-
-    }
-    */
-    public GraphADT(/*ArrayList vertices,*/ ArrayList<ArrayList<Integer>> edges){
+    public GraphADT(ArrayList<ArrayList<Integer>> edges){
 
         this.edges = edges;
         //find max position to intiliase arrayList the adjList
@@ -75,8 +56,6 @@ public abstract class GraphADT {
 
     public abstract int outDegree(int node);
 
-    public abstract int getNumNodes();
-
     //takes root node and target node and stops when target node is found
     //and returns path
     public abstract ArrayList<Integer> BFS(int root, int target);
@@ -85,16 +64,6 @@ public abstract class GraphADT {
 
     public abstract HashMap<Integer, Integer> constructHash(int root, int target);
 
-    public abstract int[] solve(int s);
-
-    public abstract ArrayList<Integer> reconstructPath(int s, int e, int[] prev);
-
-
     public abstract void printGraph();
-    
-    //create construct graph method which takes in input and crates adjacency list.
-    //create other methods which add other functionality
-
-    public abstract void constructGraph();
 
 }

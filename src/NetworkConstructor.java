@@ -53,7 +53,6 @@ public class NetworkConstructor {
                 }
             }
         }
-        //printStations(stations);
         return stations;
     }
 
@@ -89,7 +88,6 @@ public class NetworkConstructor {
     public static ArrayList<ArrayList<Station>> connections(){
         ArrayList<Station> stations = getStations();
         ArrayList<ArrayList<Station>> connections = new ArrayList<>();
-        //Very dirty contains duplicates i.e. [a,b] and [b,a]
         for (int i = 0; i < stations.size(); i++) {
             Station first = stations.get(i);
             ArrayList<Integer> firstConnections = first.getConnections();
@@ -108,7 +106,6 @@ public class NetworkConstructor {
     public static ArrayList<ArrayList<Integer>> connectionsInts(){
         ArrayList<Station> stations = createStations();
         ArrayList<ArrayList<Integer>> connections = new ArrayList<>();
-        //Very dirty contains duplicates i.e. [a,b] and [b,a]
         for (int i = 0; i < stations.size(); i++) {
             Station first = stations.get(i);
             ArrayList<Integer> firstConnections = first.getConnections();
