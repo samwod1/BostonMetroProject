@@ -30,16 +30,16 @@ public abstract class GraphADT {
             adjList.add(temp);
         }
 
-        System.out.println("adjList size: " + adjList.size());
+        //System.out.println("adjList size: " + adjList.size());
 
         for(int i = 0; i < edges.size(); i++){
             adjList.get(edges.get(i).get(1) - 1).add(edges.get(i).get(0));
 //            adjList.get(edges.get(i).get(0) - 1).add(edges.get(i).get(1));
         }
 
-        for(int i = 0; i < adjList.size(); i++){
-            System.out.println("Conns for " + (i+1) + ":" + adjList.get(i));
-        }
+//        for(int i = 0; i < adjList.size(); i++){
+//            System.out.println("Conns for " + (i+1) + ":" + adjList.get(i));
+//        }
 
     }
 
