@@ -74,8 +74,6 @@ public abstract class GraphADT {
 
     public abstract int outDegree(int node);
 
-    public abstract int getNumNodes();
-
     //takes root node and target node and stops when target node is found
     //and returns path
     public abstract ArrayList<Integer> BFS(int root, int target);

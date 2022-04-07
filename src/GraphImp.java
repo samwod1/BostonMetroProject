@@ -69,9 +69,6 @@ public class GraphImp extends GraphADT {
         return successors(node).size();
     }
 
-    public int getNumNodes(){
-        return 1;
-    }
 
     //takes root node and target node and stops when target node is found
     //and returns path
