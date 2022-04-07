@@ -1,7 +1,6 @@
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import static java.lang.Integer.parseInt;
 
@@ -10,33 +9,33 @@ public class NetworkConstructor {
     static ArrayList<Station> stations = createStations();
     static ArrayList<Line> lines = createLines();
     static ArrayList<String> lineNames = new ArrayList<>();
+    static String file = "src\\bostonmetro.txt";
 
 
     public static ArrayList<Station> createStations(){
-        ArrayList<ArrayList<String>> textLines = InputReader.readFile();
-        lineNames = new ArrayList<String>();
+        ArrayList<ArrayList<String>> textLines = InputReader.readFile("src\\bostonmetro.txt");
+        lineNames = new ArrayList<>();
         ArrayList<Station> stations = new ArrayList<>();
 
-        for (int i = 0; i < textLines.size(); i++) {
-            ArrayList<String> temp = textLines.get(i);
+        for (ArrayList<String> temp : textLines) {
             ArrayList l = new ArrayList();
             ArrayList connections = new ArrayList();
-            for (int j = 2; j < temp.size(); j+=3) {
+            for (int j = 2; j < temp.size(); j += 3) {
                 l.add(temp.get(j));
                 if (!lineNames.contains(temp.get(j))) {
                     lineNames.add(temp.get(j));
 //                    System.out.println("|||||" + lineNames);
                 }
                 for (int k = 1; k <= 2; k++) {
-                    if (connections.contains(temp.get(j+k)) == false){
-                        Integer toAdd = parseInt(temp.get(j+k));
-                        if (toAdd>0) {
+                    if (!connections.contains(temp.get(j + k))) {
+                        Integer toAdd = parseInt(temp.get(j + k));
+                        if (toAdd > 0) {
                             connections.add(toAdd);
                         }
                     }
                 }
             }
-            Station s = new Station(temp.get(0),temp.get(1), l, connections);
+            Station s = new Station(temp.get(0), temp.get(1), l, connections);
             stations.add(s);
         }
         return stations;
@@ -47,13 +46,13 @@ public class NetworkConstructor {
         ArrayList<Line> lines = new ArrayList<>();
 
         //System.out.println("Innest " + lineNames);
-        for (int i = 0; i < lineNames.size(); i++) {
+        for (int i = 0; i < Objects.requireNonNull(lineNames).size(); i++) {
             ArrayList<Station> lineStns = new ArrayList<>();
-            for (int j = 0; j < stations.size(); j++) {
-                ArrayList<String> arrLines = stations.get(j).getLines();
-                for (int k = 0; k < arrLines.size(); k++) {
-                    if (lineNames.get(i).equals(arrLines.get(k))) {
-                        lineStns.add(stations.get(j));
+            for (Station station : stations) {
+                ArrayList<String> arrLines = station.getLines();
+                for (String arrLine : arrLines) {
+                    if (lineNames.get(i).equals(arrLine)) {
+                        lineStns.add(station);
 //                        System.out.println("Innest");
                     }
                 }
@@ -100,9 +99,9 @@ public class NetworkConstructor {
         ArrayList stations = getStations();
         Station target = null;
 
-        for (int i = 0; i < stations.size(); i++) {
-            Station current = (Station) stations.get(i);
-            if (current.getNumberAsint() == n) {
+        for (Object station : stations) {
+            Station current = (Station) station;
+            if (current.getNumberAsint().equals(n)) {
                 target = current;
             }
         }
@@ -114,12 +113,11 @@ public class NetworkConstructor {
         ArrayList<Station> stations = getStations();
         ArrayList<ArrayList<Station>> connections = new ArrayList<>();
         //Very dirty contains duplicates i.e. [a,b] and [b,a]
-        for (int i = 0; i < stations.size(); i++) {
-            Station first = stations.get(i);
+        for (Station first : stations) {
             ArrayList<Integer> firstConnections = first.getConnections();
-            for (int j = 0; j < firstConnections.size(); j++) {
+            for (Integer firstConnection : firstConnections) {
                 ArrayList<Station> conn = new ArrayList<>();
-                Station second = stations.get(firstConnections.get(j)-1);
+                Station second = stations.get(firstConnection - 1);
                 conn.add(first);
                 conn.add(second);
                 connections.add(conn);
@@ -133,12 +131,11 @@ public class NetworkConstructor {
         ArrayList<Station> stations = createStations();
         ArrayList<ArrayList<Integer>> connections = new ArrayList<>();
         //Very dirty contains duplicates i.e. [a,b] and [b,a]
-        for (int i = 0; i < stations.size(); i++) {
-            Station first = stations.get(i);
+        for (Station first : stations) {
             ArrayList<Integer> firstConnections = first.getConnections();
-            for (int j = 0; j < firstConnections.size(); j++) {
+            for (Integer firstConnection : firstConnections) {
                 ArrayList<Integer> conn = new ArrayList<>();
-                Station second = stations.get(firstConnections.get(j)-1);
+                Station second = stations.get(firstConnection - 1);
                 conn.add(first.getNumberAsint());
                 conn.add(second.getNumberAsint());
                 connections.add(conn);
@@ -159,8 +156,8 @@ public class NetworkConstructor {
     }
 
     public static void printStations(List<Station> stations){
-        for (int i = 0; i < stations.size(); i++) {
-            System.out.println(stations.get(i).toString());
+        for (Station station : stations) {
+            System.out.println(station.toString());
         }
     }
 }

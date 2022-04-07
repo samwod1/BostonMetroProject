@@ -1,33 +1,28 @@
-
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 
 public class InputReader {
 
-    public static final String fileLocation = "src\\bostonmetro.txt";
     public static final String divider = " ";
 
-    public static ArrayList readFile() {
-        ArrayList<ArrayList<String>> textLines = new ArrayList();
+    public static ArrayList readFile(String fileLocation) {
+        ArrayList textLines = new ArrayList();
         try {
             File inputFile = new File(fileLocation);
             BufferedReader br = new BufferedReader(new FileReader(inputFile));
-            String line = "";
+            String line;
 
             while((line = br.readLine()) != null) {
                 String [] temp;
                 ArrayList<String> current = new ArrayList<>();
                 temp = line.replaceAll("[^A-Za-z0-9/.']"," ").split(divider);
-                for (int i = 0; i < temp.length; i++) {
-                    if (temp[i]!=""){
-                        current.add(temp[i]);
+                for (String s : temp) {
+                    if (!s.equals("")) {
+                        current.add(s);
                     }
                 }
                 //printData(current);
@@ -44,8 +39,8 @@ public class InputReader {
 
     //[[1, Oakgrove, Orange, 0, 2],[2, Malden, Orange, 1, 5]]
     public static void printData(ArrayList current){
-        for (int i = 0; i < current.size(); i++) {
-            System.out.print("|"+current.get(i)+"|" + " ");
+        for (Object o : current) {
+            System.out.print("|" + o + "|" + " ");
         }
         System.out.println();
     }
