@@ -85,6 +85,11 @@ public abstract class GraphADT {
 
     public abstract HashMap<Integer, Integer> constructHash(int root, int target);
 
+    public abstract int[] solve(int s);
+
+    public abstract ArrayList<Integer> reconstructPath(int s, int e, int[] prev);
+
+
     public abstract void printGraph();
     
     //create construct graph method which takes in input and crates adjacency list.

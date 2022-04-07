@@ -18,7 +18,7 @@ public class GraphImp extends GraphADT {
     {
         int count = 0;
         for(int i = 0; i < numNodes; i++) {
-            int n = adjList.size();
+            int n = adjList.get(i).size();
             for(int j = 0; j < n; j++) {
                 int a = adjList.get(i).get(j);
                 if(a > i){
@@ -78,8 +78,10 @@ public class GraphImp extends GraphADT {
     public ArrayList<Integer> BFS(int root, int target)
     {
        HashMap hash = constructHash(root, target);
-        System.out.println(hash);
-       ArrayList<Integer> path = constructPath(hash, target);
+       //int[] s = solve(root);
+       System.out.println(hash);
+      // ArrayList<Integer> path = reconstructPath(root, target, s);
+        ArrayList<Integer> path = constructPath(hash, target);
 
        return path;
     }
@@ -87,10 +89,6 @@ public class GraphImp extends GraphADT {
     public void printGraph(){
         int src_vertex = 0;
         int list_size = adjList.size();
-
-        while(src_vertex < list_size){
-
-        }
     }
 
 //    public ArrayList<Integer> constructPath(HashMap<Integer, Integer> map){
@@ -154,19 +152,61 @@ public class GraphImp extends GraphADT {
         return order;
     }
 
+    public  ArrayList<Integer> reconstructPath(int s, int e, int[] prev){
+        ArrayList<Integer> path = new ArrayList<>();
+        int at = e;
+        while(at != s){
+            path.add(at);
+            at = prev[at];
+        }
+
+        return path;
+    }
+
+
+    public int[] solve(int s){
+        Queue<Integer> q = new LinkedList<>();
+        q.add(s);
+
+        boolean[] visited = new boolean[nNodes()];
+        visited[s] = true;
+
+        int[] prev = new int[nNodes()];
+
+        while(!q.isEmpty()){
+            int node = q.remove();
+            List<Integer> neighbours = adjList.get(node-1);
+
+            for(int next : neighbours){
+                if(!visited[next-1]){
+                    q.add(next);
+                    visited[next-1] = true;
+                    prev[next-1] = node;
+                }
+            }
+        }
+
+        return prev;
+
+    }
+
+
+
     public HashMap<Integer, Integer> constructHash(int root, int target) {
-        ArrayList<Integer> visited = new ArrayList<>();
-        LinkedList<Integer> agenda = new LinkedList<>();
-        HashMap<Integer, Integer> hash = new HashMap<Integer, Integer>();
+
+        HashSet<Integer> visited = new HashSet<>();
+        Queue<Integer> agenda = new LinkedList<>();
+        HashMap<Integer, Integer> hash = new HashMap<>();
         boolean found = false;
 
-        agenda.add(root);
 //        System.out.println(agenda);
         hash.put(root, null);
         visited.add(root);
+        agenda.add(root);
 
-        while(!found) {
-            int parent = agenda.poll();
+        while(!agenda.isEmpty()) {
+
+            int parent = agenda.remove();
 
             if (parent == target) {
 //                System.out.println(parent);
@@ -174,6 +214,7 @@ public class GraphImp extends GraphADT {
             } else {
 
                 Iterator<Integer> iterator = adjList.get(parent-1).listIterator();
+
                 while (iterator.hasNext()){
                     int num = iterator.next();
                     agenda.add(num);
@@ -182,11 +223,11 @@ public class GraphImp extends GraphADT {
                         hash.put(num,parent);
                         visited.add(num);
                 }
-
             }
         }
-
         return hash;
+
+
     }
 
 //    public HashMap constructHash(int root, int target){

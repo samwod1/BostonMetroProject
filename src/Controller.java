@@ -14,10 +14,10 @@ public class Controller {
 
 //        System.out.println(route.makeRoute(stn2,stn1));
 
-        Station stn3 = nwc.stnfromStr("Aquarium");
+        Station stn3 = nwc.stnfromStr("Braintree");
 //        System.out.println(stn3);
 
-        Station stn4 = nwc.stnfromStr("Woodland");
+        Station stn4 = nwc.stnfromStr("SouthStreet");
 //        System.out.println(stn4);
 
         System.out.println(route.makeRoute(stn4,stn3));
