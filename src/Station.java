@@ -8,8 +8,8 @@ public class Station {
 
     String number;
     String name;
-    ArrayList<String> lines;
-    ArrayList<Integer> connections;
+    ArrayList lines;
+    ArrayList connections;
 
     public Station(String number, String name, ArrayList lines, ArrayList connections) {
         this.number = number;

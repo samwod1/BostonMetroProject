@@ -25,8 +25,8 @@ public class Route {
 
         ArrayList<Integer> intPath = graph.BFS(n1int,n2int);
 
-        for (int i = 0; i < intPath.size(); i++) {
-            path.add(NetworkConstructor.getStnFromInt(intPath.get(i)));
+        for (Integer integer : intPath) {
+            path.add(NetworkConstructor.getStnFromInt(integer));
         }
 
         return path;
