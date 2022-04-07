@@ -1,9 +1,13 @@
 # CS308 Boston Metro Project
 
-Questions for Bertrand:
+README
 
-1. How to assign distances between stations?
+This project uses JavaFX to create its GUI.
 
-2. How to set out in the initial design of our project? 
+To install JavaFX please follow this youtube tutorial: 
 
-3. Do we have to use Java Swing, or can we use Java FX?
+https://www.youtube.com/watch?v=Ope4icw6bVk&feature=youtu.be
+
+This project uses Junit5.
+
+To run in an IDE run the Driver class.
