@@ -92,7 +92,7 @@ public class GUI_eventlisteners implements Initializable {
                 try {
                 Start = fromtxt.getText();
                 End = totxt.getText();
-
+                        System.out.println("nmdsf");
                 Boolean[] errorCheck = controller.errorCheck(Start,End);
 
                 if (!errorCheck[0] || !errorCheck[1]){
@@ -103,7 +103,7 @@ public class GUI_eventlisteners implements Initializable {
                 }
 
                 } catch (Exception e) {
-                System.out.println(e);
+                System.out.println("Not working");
                 }
         }
 
@@ -203,6 +203,9 @@ public class GUI_eventlisteners implements Initializable {
                                 line = lineShort(pathStns.get(i)[1]);
                         }
                         String station = pathStns.get(i)[0];
+                        if(i==0){
+                                station = line + " " + station;
+                        }
                         if(i+1<pathStns.size()) {
                                 if (pathStns.get(i)[1].equals(pathStns.get(i + 1)[1])) {
                                         station = line + " " + station;
@@ -212,6 +215,7 @@ public class GUI_eventlisteners implements Initializable {
                                 }
                         } else if (pathStns.size()-1 == i){
                                 station = line + " " + station;
+                               // System.out.println("efrdsf");
                         }
                         pathCombine.add(station);
 
@@ -228,6 +232,7 @@ public class GUI_eventlisteners implements Initializable {
 
         public String lineShort(String line){
                 String shrtLine = "";
+              //  System.out.println(line);
                 switch(line) {
                         case "Red" :
                                 shrtLine = "|R";
@@ -267,6 +272,12 @@ public class GUI_eventlisteners implements Initializable {
                                 System.out.println("Line wrong syntax");
                 }
                 return shrtLine;
+        }
+
+        public ObservableList<String> getPath(){
+                ObservableList<String> path;
+                path = fromListView.getSelectionModel().getSelectedItems();
+                return path;
         }
 
 }

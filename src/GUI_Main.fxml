@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="MainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="914.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI_eventlisteners">
+<AnchorPane fx:id="MainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="786.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI_eventlisteners">
    <children>
       <Separator layoutX="312.0" layoutY="-8.0" orientation="VERTICAL" prefHeight="961.0" prefWidth="14.0" />
       <TextField fx:id="fromtxt" layoutX="32.0" layoutY="128.0" prefHeight="25.0" prefWidth="250.0" />
@@ -21,16 +21,16 @@
       <Label layoutX="149.0" layoutY="185.0" text="To" />
       <Separator layoutX="-8.0" layoutY="309.0" prefHeight="11.0" prefWidth="326.0" />
       <Label fx:id="Warning" layoutX="67.0" layoutY="55.0" prefHeight="17.0" prefWidth="163.0" />
-      <ListView fx:id="fromListView" editable="true" layoutX="398.0" layoutY="96.0" prefHeight="782.0" prefWidth="200.0" />
+      <ListView fx:id="fromListView" editable="true" layoutX="398.0" layoutY="66.0" prefHeight="690.0" prefWidth="200.0" />
       <Button fx:id="switchToMapBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="115.0" layoutY="349.0" mnemonicParsing="false" onAction="#switchToMapBtn" prefHeight="30.0" prefWidth="83.0" text="Show Map" />
-      <ListView fx:id="toListView" editable="true" layoutX="678.0" layoutY="96.0" prefHeight="782.0" prefWidth="200.0" />
+      <ListView fx:id="toListView" editable="true" layoutX="678.0" layoutY="66.0" prefHeight="690.0" prefWidth="200.0" />
       <Label layoutX="631.0" layoutY="464.0" text="To" />
-      <ListView fx:id="resultingPath" editable="true" layoutX="1013.0" layoutY="96.0" prefHeight="782.0" prefWidth="200.0" />
+      <ListView fx:id="resultingPath" editable="true" layoutX="1013.0" layoutY="66.0" prefHeight="690.0" prefWidth="200.0" />
       <Label layoutX="939.0" layoutY="464.0" text="=" />
-      <Label layoutX="1072.0" layoutY="61.0" text="Route to Take" />
+      <Label layoutX="1072.0" layoutY="25.0" text="Route to Take" />
       <Button fx:id="submitbtn2" layoutX="900.0" layoutY="458.0" mnemonicParsing="false" onAction="#submitBtnList" text="Submit Route" />
-      <ComboBox fx:id="fromLineDropDown" layoutX="423.0" layoutY="51.0" prefWidth="150.0" />
-      <ComboBox fx:id="toLineDropdown" layoutX="703.0" layoutY="51.0" prefWidth="150.0" />
+      <ComboBox fx:id="fromLineDropDown" layoutX="423.0" layoutY="25.0" prefWidth="150.0" />
+      <ComboBox fx:id="toLineDropdown" layoutX="703.0" layoutY="25.0" prefWidth="150.0" />
       <Line endX="17.0" layoutX="639.0" layoutY="494.0" startX="-16.0" />
       <Line endX="8.0" endY="75.0" layoutX="639.0" layoutY="407.0" startX="17.5" startY="87.0" />
       <Line endX="8.0" endY="75.0" layoutX="649.0" layoutY="417.0" startX="-1.0" startY="86.0" />
@@ -38,7 +38,7 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Pane fx:id="keyBG" layoutX="89.0" layoutY="439.0" prefHeight="422.0" prefWidth="137.0">
+      <Pane fx:id="keyBG" layoutX="89.0" layoutY="406.0" prefHeight="380.0" prefWidth="137.0">
          <children>
             <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="2.0" layoutY="275.0" prefHeight="18.0" prefWidth="200.0" text="|GB = Green B Line" textAlignment="CENTER" />
             <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="2.0" layoutY="315.0" prefHeight="18.0" prefWidth="200.0" text="|GD = Green D Line" textAlignment="CENTER" />

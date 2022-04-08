@@ -18,7 +18,7 @@ public class GraphImp extends GraphADT {
     {
         int count = 0;
         for(int i = 0; i < numNodes; i++) {
-            int n = adjList.size();
+            int n = adjList.get(i).size();
             for(int j = 0; j < n; j++) {
                 int a = adjList.get(i).get(j);
                 if(a > i){
@@ -62,16 +62,13 @@ public class GraphImp extends GraphADT {
             if (adjList.get(node).contains(i))
                 successorNodes.add(i);
         return successorNodes;
-    };
+    }
 
     public int outDegree(int node)
     {
         return successors(node).size();
     }
 
-    public int getNumNodes(){
-        return 1;
-    }
 
     //takes root node and target node and stops when target node is found
     //and returns path
@@ -85,18 +82,18 @@ public class GraphImp extends GraphADT {
     }
 
     public void printGraph(){
-        int src_vertex = 0;
-        int list_size = adjList.size();
 
-        while(src_vertex < list_size){
-
+        for(int i = 0; i < adjList.size(); i++){
+            System.out.println("Conns for " + (i+1) + ":" + adjList.get(i));
         }
+
     }
 
     public ArrayList<Integer> constructPath(HashMap<Integer, Integer> map, int target){
 
         boolean found = false;
         ArrayList<Integer> order = new ArrayList<>();
+
 
         Integer node = target;
         while (!found) {
@@ -203,4 +200,48 @@ public class GraphImp extends GraphADT {
 
     }
 
+    public static void main(String[] args) {
+
+        ArrayList<ArrayList<Integer>> aList = new ArrayList<ArrayList<Integer>>();
+
+        ArrayList<Integer> a1 = new ArrayList<Integer>();
+        a1.add(1);
+        a1.add(2);
+        aList.add(a1);
+
+        ArrayList<Integer> a2 = new ArrayList<Integer>();
+        a2.add(1);
+        a2.add(3);
+        aList.add(a2);
+
+        ArrayList<Integer> a3 = new ArrayList<Integer>();
+        a3.add(1);
+        a3.add(4);
+        aList.add(a3);
+
+        ArrayList<Integer> a4 = new ArrayList<Integer>();
+        a4.add(1);
+        a4.add(5);
+        aList.add(a4);
+
+        ArrayList<Integer> a5 = new ArrayList<Integer>();
+        a5.add(5);
+        a5.add(6);
+        aList.add(a5);
+
+        ArrayList<Integer> a6 = new ArrayList<Integer>();
+        a6.add(5);
+        a6.add(7);
+        aList.add(a6);
+
+        ArrayList<Integer> a7 = new ArrayList<Integer>();
+        a7.add(7);
+        a7.add(8);
+        aList.add(a7);
+
+
+        GraphImp graph = new GraphImp(aList);
+        //System.out.print(graph);
+        System.out.println(graph.BFS(1,8));
+    }
 }
